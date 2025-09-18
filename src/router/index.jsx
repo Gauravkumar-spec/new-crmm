@@ -1,5 +1,4 @@
-import { useRoutes , useLocation} from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useRoutes } from "react-router-dom";
 import SideMenu from "../layouts/side-menu/Main";
 import SimpleMenu from "../layouts/simple-menu/Main";
 import TopMenu from "../layouts/top-menu/Main";
@@ -9,8 +8,8 @@ import DashboardOverview3 from "../views/dashboard-overview-3/Main";
 import DashboardOverview4 from "../views/dashboard-overview-4/Main";
 import Categories from "../views/categories/Main";
 import AddProduct from "../views/add-product/Main";
-import ProductList from "../views/product-list/Main";
-import ProductGrid from "../views/product-grid/Main";
+import PropertyList from "../views/property-list/Main.jsx";
+import PropertyGrid from "../views/property-grid/Main.jsx";
 import TransactionList from "../views/transaction-list/Main";
 import TransactionDetail from "../views/transaction-detail/Main";
 import SellerList from "../pages/LeadLists";
@@ -31,8 +30,8 @@ import ProfileOverview2 from "../views/profile-overview-2/Main";
 import ProfileOverview3 from "../views/profile-overview-3/Main";
 import WizardLayout1 from "../views/wizard-layout-1/Main";
 import WizardLayout2 from "../views/wizard-layout-2/Main";
-import WizardLayout3 from "../pages/Property";
-import RegularTable from "../pages/Leads"
+import CreateProperty from "../pages/CreateProperty.jsx";
+import RegularTable from "../pages/Leads";
 import BlogLayout1 from "../views/blog-layout-1/Main";
 import BlogLayout2 from "../views/blog-layout-2/Main";
 import BlogLayout3 from "../views/blog-layout-3/Main";
@@ -43,7 +42,6 @@ import InvoiceLayout2 from "../views/invoice-layout-2/Main";
 import FaqLayout1 from "../views/faq-layout-1/Main";
 import FaqLayout2 from "../views/faq-layout-2/Main";
 import FaqLayout3 from "../views/faq-layout-3/Main";
-import Register from "../views/register/Main";
 import ErrorPage from "../views/error-page/Main";
 import UpdateProfile from "../views/update-profile/Main";
 import ChangePassword from "../views/change-password/Main";
@@ -70,855 +68,854 @@ import Validation from "../views/validation/Main";
 import Chart from "../views/chart/Main";
 import Slider from "../views/slider/Main";
 import ImageZoom from "../views/image-zoom/Main";
-// import ProtectedRoute from "../components/ProtectedRoute";
-// import Login from "../pages/Login";
 import AgentList from "../pages/AgentList";
 import Agents from "../pages/Agent";
-
+import ProtectedRoute from "../components/ProtectedRoute";
+import Login from "../pages/Login";
 
 function Router() {
-  const routes = [
-    // { path: "/login", element: <Login /> },
-    // { path: "/register", element: <Register /> },
-    // { path: "/error-page", element: <ErrorPage /> },
-    // { path: "/test", element: <SideMenu /> },
-    // SideMenu protected routes
-    {
-      path: "/",
-      element: (
-      
-          <SideMenu />
-        
-      ),
-    children: [
-        { index: true, element: <DashboardOverview1 /> }, 
+    const routes = [
+        // Default: Login page
+        { path: "/", element: <Login /> },
+
+        // DashBoard Routes
         {
-          path: "dashboard-overview-2",
-          element: <DashboardOverview2 />,
-        },
-        {
-          path: "dashboard-overview-3",
-          element: <DashboardOverview3 />,
-        },
-        {
-          path: "dashboard-overview-4",
-          element: <DashboardOverview4 />,
-        },
-        {
-          path: "categories",
-          element: <Categories />,
-        },
-        {
-          path: "add-product",
-          element: <AddProduct />,
-        },
-        {
-          path: "product-list",
-          element: <ProductList />,
-        },
-        {
-          path: "product-grid",
-          element: <ProductGrid />,
-        },
-        {
-          path: "transaction-list",
-          element: <TransactionList />,
-        },
-        {
-          path: "transaction-detail",
-          element: <TransactionDetail />,
-        },
-        {
-          path: "seller-list",
-          element: <SellerList />,
-        },
-        {
-          path: "seller-detail",
-          element: <SellerDetail />,
-        },
-        {
-          path: "reviews",
-          element: <Reviews />,
-        },
-        {
-          path: "inbox",
-          element: <Inbox />,
-        },
-        {
-          path: "agents",
-          element: <Agents />,
-        },
+            path: "/dashboard",
+            element: (
+                <ProtectedRoute>
+                    <SideMenu />
+                </ProtectedRoute>
+            ),
+            children: [
+                { index: true, element: <DashboardOverview1 /> },
                 {
-          path: "agentslist",
-          element: <AgentList />,
+                    path: "dashboard-overview-2",
+                    element: <DashboardOverview2 />,
+                },
+                {
+                    path: "dashboard-overview-3",
+                    element: <DashboardOverview3 />,
+                },
+                {
+                    path: "dashboard-overview-4",
+                    element: <DashboardOverview4 />,
+                },
+                {
+                    path: "categories",
+                    element: <Categories />,
+                },
+                {
+                    path: "add-product",
+                    element: <AddProduct />,
+                },
+                {
+                    path: "product-list",
+                    element: <PropertyList />,
+                },
+                {
+                    path: "product-grid",
+                    element: <PropertyGrid />,
+                },
+                {
+                    path: "transaction-list",
+                    element: <TransactionList />,
+                },
+                {
+                    path: "transaction-detail",
+                    element: <TransactionDetail />,
+                },
+                {
+                    path: "seller-list",
+                    element: <SellerList />,
+                },
+                {
+                    path: "seller-detail",
+                    element: <SellerDetail />,
+                },
+                {
+                    path: "reviews",
+                    element: <Reviews />,
+                },
+                {
+                    path: "inbox",
+                    element: <Inbox />,
+                },
+                {
+                    path: "agents",
+                    element: <Agents />,
+                },
+                {
+                    path: "agentslist",
+                    element: <AgentList />,
+                },
+                {
+                    path: "point-of-sale",
+                    element: <PointOfSale />,
+                },
+                {
+                    path: "chat",
+                    element: <Chat />,
+                },
+                {
+                    path: "post",
+                    element: <Post />,
+                },
+                {
+                    path: "calendar",
+                    element: <Calendar />,
+                },
+                {
+                    path: "crud-data-list",
+                    element: <CrudDataList />,
+                },
+                {
+                    path: "crud-form",
+                    element: <CrudForm />,
+                },
+                {
+                    path: "users-layout-1",
+                    element: <UsersLayout1 />,
+                },
+                {
+                    path: "users-layout-2",
+                    element: <UsersLayout2 />,
+                },
+                {
+                    path: "users-layout-3",
+                    element: <UsersLayout3 />,
+                },
+                {
+                    path: "profile-overview-1",
+                    element: <ProfileOverview1 />,
+                },
+                {
+                    path: "profile-overview-2",
+                    element: <ProfileOverview2 />,
+                },
+                {
+                    path: "profile-overview-3",
+                    element: <ProfileOverview3 />,
+                },
+                {
+                    path: "wizard-layout-1",
+                    element: <WizardLayout1 />,
+                },
+                {
+                    path: "wizard-layout-2",
+                    element: <WizardLayout2 />,
+                },
+                {
+                    path: "add-property",
+                    element: <CreateProperty />,
+                },
+                {
+                    path: "edit-property/:id",
+                    element: <CreateProperty />,
+                },
+                {
+                    path: "blog-layout-1",
+                    element: <BlogLayout1 />,
+                },
+                {
+                    path: "blog-layout-2",
+                    element: <BlogLayout2 />,
+                },
+                {
+                    path: "blog-layout-3",
+                    element: <BlogLayout3 />,
+                },
+                {
+                    path: "pricing-layout-1",
+                    element: <PricingLayout1 />,
+                },
+                {
+                    path: "pricing-layout-2",
+                    element: <PricingLayout2 />,
+                },
+                {
+                    path: "invoice-layout-1",
+                    element: <InvoiceLayout1 />,
+                },
+                {
+                    path: "invoice-layout-2",
+                    element: <InvoiceLayout2 />,
+                },
+                {
+                    path: "faq-layout-1",
+                    element: <FaqLayout1 />,
+                },
+                {
+                    path: "faq-layout-2",
+                    element: <FaqLayout2 />,
+                },
+                {
+                    path: "faq-layout-3",
+                    element: <FaqLayout3 />,
+                },
+                {
+                    path: "update-profile",
+                    element: <UpdateProfile />,
+                },
+                {
+                    path: "change-password",
+                    element: <ChangePassword />,
+                },
+                {
+                    path: "leads",
+                    element: <RegularTable />,
+                },
+                {
+                    path: "tabulator",
+                    element: <Tabulator />,
+                },
+                {
+                    path: "modal",
+                    element: <Modal />,
+                },
+                {
+                    path: "slide-over",
+                    element: <SlideOver />,
+                },
+                {
+                    path: "notification",
+                    element: <Notification />,
+                },
+                {
+                    path: "tab",
+                    element: <Tab />,
+                },
+                {
+                    path: "accordion",
+                    element: <Accordion />,
+                },
+                {
+                    path: "button",
+                    element: <Button />,
+                },
+                {
+                    path: "alert",
+                    element: <Alert />,
+                },
+                {
+                    path: "progress-bar",
+                    element: <ProgressBar />,
+                },
+                {
+                    path: "tooltip",
+                    element: <Tooltip />,
+                },
+                {
+                    path: "dropdown",
+                    element: <Dropdown />,
+                },
+                {
+                    path: "typography",
+                    element: <Typography />,
+                },
+                {
+                    path: "icon",
+                    element: <Icon />,
+                },
+                {
+                    path: "loading-icon",
+                    element: <LoadingIcon />,
+                },
+                {
+                    path: "regular-form",
+                    element: <RegularForm />,
+                },
+                {
+                    path: "datepicker",
+                    element: <Datepicker />,
+                },
+                {
+                    path: "tom-select",
+                    element: <TomSelect />,
+                },
+                {
+                    path: "file-upload",
+                    element: <FileUpload />,
+                },
+                {
+                    path: "wysiwyg-editor",
+                    element: <WysiwygEditor />,
+                },
+                {
+                    path: "validation",
+                    element: <Validation />,
+                },
+                {
+                    path: "chart",
+                    element: <Chart />,
+                },
+                {
+                    path: "slider",
+                    element: <Slider />,
+                },
+                {
+                    path: "image-zoom",
+                    element: <ImageZoom />,
+                },
+            ],
         },
+        // Simple menu Routes
         {
-          path: "point-of-sale",
-          element: <PointOfSale />,
+            path: "/simple-menu",
+            element: (
+                <ProtectedRoute>
+                    <SimpleMenu />
+                </ProtectedRoute>
+            ),
+            children: [
+                {
+                    path: "dashboard-overview-1",
+                    element: <DashboardOverview1 />,
+                },
+                {
+                    path: "dashboard-overview-2",
+                    element: <DashboardOverview2 />,
+                },
+                {
+                    path: "dashboard-overview-3",
+                    element: <DashboardOverview3 />,
+                },
+                {
+                    path: "dashboard-overview-4",
+                    element: <DashboardOverview4 />,
+                },
+                {
+                    path: "categories",
+                    element: <Categories />,
+                },
+                {
+                    path: "add-product",
+                    element: <AddProduct />,
+                },
+                {
+                    path: "product-list",
+                    element: <PropertyList />,
+                },
+                {
+                    path: "product-grid",
+                    element: <PropertyGrid />,
+                },
+                {
+                    path: "transaction-list",
+                    element: <TransactionList />,
+                },
+                {
+                    path: "transaction-detail",
+                    element: <TransactionDetail />,
+                },
+                {
+                    path: "seller-list",
+                    element: <SellerList />,
+                },
+                {
+                    path: "seller-detail",
+                    element: <SellerDetail />,
+                },
+                {
+                    path: "reviews",
+                    element: <Reviews />,
+                },
+                {
+                    path: "inbox",
+                    element: <Inbox />,
+                },
+                // {
+                //   path: "agents",
+                //   element: <FileManager />,
+                // },
+                {
+                    path: "point-of-sale",
+                    element: <PointOfSale />,
+                },
+                {
+                    path: "chat",
+                    element: <Chat />,
+                },
+                {
+                    path: "post",
+                    element: <Post />,
+                },
+                {
+                    path: "calendar",
+                    element: <Calendar />,
+                },
+                {
+                    path: "crud-data-list",
+                    element: <CrudDataList />,
+                },
+                {
+                    path: "crud-form",
+                    element: <CrudForm />,
+                },
+                {
+                    path: "users-layout-1",
+                    element: <UsersLayout1 />,
+                },
+                {
+                    path: "users-layout-2",
+                    element: <UsersLayout2 />,
+                },
+                {
+                    path: "users-layout-3",
+                    element: <UsersLayout3 />,
+                },
+                {
+                    path: "profile-overview-1",
+                    element: <ProfileOverview1 />,
+                },
+                {
+                    path: "profile-overview-2",
+                    element: <ProfileOverview2 />,
+                },
+                {
+                    path: "profile-overview-3",
+                    element: <ProfileOverview3 />,
+                },
+                {
+                    path: "wizard-layout-1",
+                    element: <WizardLayout1 />,
+                },
+                {
+                    path: "wizard-layout-2",
+                    element: <WizardLayout2 />,
+                },
+                {
+                    path: "add-property",
+                    element: <CreateProperty />,
+                },
+                {
+                    path: "blog-layout-1",
+                    element: <BlogLayout1 />,
+                },
+                {
+                    path: "blog-layout-2",
+                    element: <BlogLayout2 />,
+                },
+                {
+                    path: "blog-layout-3",
+                    element: <BlogLayout3 />,
+                },
+                {
+                    path: "pricing-layout-1",
+                    element: <PricingLayout1 />,
+                },
+                {
+                    path: "pricing-layout-2",
+                    element: <PricingLayout2 />,
+                },
+                {
+                    path: "invoice-layout-1",
+                    element: <InvoiceLayout1 />,
+                },
+                {
+                    path: "invoice-layout-2",
+                    element: <InvoiceLayout2 />,
+                },
+                {
+                    path: "faq-layout-1",
+                    element: <FaqLayout1 />,
+                },
+                {
+                    path: "faq-layout-2",
+                    element: <FaqLayout2 />,
+                },
+                {
+                    path: "faq-layout-3",
+                    element: <FaqLayout3 />,
+                },
+                {
+                    path: "update-profile",
+                    element: <UpdateProfile />,
+                },
+                {
+                    path: "change-password",
+                    element: <ChangePassword />,
+                },
+                {
+                    path: "leads",
+                    element: <RegularTable />,
+                },
+                {
+                    path: "tabulator",
+                    element: <Tabulator />,
+                },
+                {
+                    path: "modal",
+                    element: <Modal />,
+                },
+                {
+                    path: "slide-over",
+                    element: <SlideOver />,
+                },
+                {
+                    path: "notification",
+                    element: <Notification />,
+                },
+                {
+                    path: "tab",
+                    element: <Tab />,
+                },
+                {
+                    path: "accordion",
+                    element: <Accordion />,
+                },
+                {
+                    path: "button",
+                    element: <Button />,
+                },
+                {
+                    path: "alert",
+                    element: <Alert />,
+                },
+                {
+                    path: "progress-bar",
+                    element: <ProgressBar />,
+                },
+                {
+                    path: "tooltip",
+                    element: <Tooltip />,
+                },
+                {
+                    path: "dropdown",
+                    element: <Dropdown />,
+                },
+                {
+                    path: "typography",
+                    element: <Typography />,
+                },
+                {
+                    path: "icon",
+                    element: <Icon />,
+                },
+                {
+                    path: "loading-icon",
+                    element: <LoadingIcon />,
+                },
+                {
+                    path: "regular-form",
+                    element: <RegularForm />,
+                },
+                {
+                    path: "datepicker",
+                    element: <Datepicker />,
+                },
+                {
+                    path: "tom-select",
+                    element: <TomSelect />,
+                },
+                {
+                    path: "file-upload",
+                    element: <FileUpload />,
+                },
+                {
+                    path: "wysiwyg-editor",
+                    element: <WysiwygEditor />,
+                },
+                {
+                    path: "validation",
+                    element: <Validation />,
+                },
+                {
+                    path: "chart",
+                    element: <Chart />,
+                },
+                {
+                    path: "slider",
+                    element: <Slider />,
+                },
+                {
+                    path: "image-zoom",
+                    element: <ImageZoom />,
+                },
+            ],
         },
+        // Top menu Routes
         {
-          path: "chat",
-          element: <Chat />,
+            path: "/top-menu",
+            element: (
+                <ProtectedRoute>
+                    <TopMenu />
+                </ProtectedRoute>
+            ),
+            children: [
+                {
+                    path: "dashboard-overview-1",
+                    element: <DashboardOverview1 />,
+                },
+                {
+                    path: "dashboard-overview-2",
+                    element: <DashboardOverview2 />,
+                },
+                {
+                    path: "dashboard-overview-3",
+                    element: <DashboardOverview3 />,
+                },
+                {
+                    path: "dashboard-overview-4",
+                    element: <DashboardOverview4 />,
+                },
+                {
+                    path: "categories",
+                    element: <Categories />,
+                },
+                {
+                    path: "add-product",
+                    element: <AddProduct />,
+                },
+                {
+                    path: "product-list",
+                    element: <PropertyList />,
+                },
+                {
+                    path: "product-grid",
+                    element: <PropertyGrid />,
+                },
+                {
+                    path: "transaction-list",
+                    element: <TransactionList />,
+                },
+                {
+                    path: "transaction-detail",
+                    element: <TransactionDetail />,
+                },
+                {
+                    path: "seller-list",
+                    element: <SellerList />,
+                },
+                {
+                    path: "seller-detail",
+                    element: <SellerDetail />,
+                },
+                {
+                    path: "reviews",
+                    element: <Reviews />,
+                },
+                {
+                    path: "inbox",
+                    element: <Inbox />,
+                },
+                // {
+                //   path: "agents",
+                //   element: <FileManager />,
+                // },
+                {
+                    path: "point-of-sale",
+                    element: <PointOfSale />,
+                },
+                {
+                    path: "chat",
+                    element: <Chat />,
+                },
+                {
+                    path: "post",
+                    element: <Post />,
+                },
+                {
+                    path: "calendar",
+                    element: <Calendar />,
+                },
+                {
+                    path: "crud-data-list",
+                    element: <CrudDataList />,
+                },
+                {
+                    path: "crud-form",
+                    element: <CrudForm />,
+                },
+                {
+                    path: "users-layout-1",
+                    element: <UsersLayout1 />,
+                },
+                {
+                    path: "users-layout-2",
+                    element: <UsersLayout2 />,
+                },
+                {
+                    path: "users-layout-3",
+                    element: <UsersLayout3 />,
+                },
+                {
+                    path: "profile-overview-1",
+                    element: <ProfileOverview1 />,
+                },
+                {
+                    path: "profile-overview-2",
+                    element: <ProfileOverview2 />,
+                },
+                {
+                    path: "profile-overview-3",
+                    element: <ProfileOverview3 />,
+                },
+                {
+                    path: "wizard-layout-1",
+                    element: <WizardLayout1 />,
+                },
+                {
+                    path: "wizard-layout-2",
+                    element: <WizardLayout2 />,
+                },
+                {
+                    path: "add-property",
+                    element: <CreateProperty />,
+                },
+                {
+                    path: "blog-layout-1",
+                    element: <BlogLayout1 />,
+                },
+                {
+                    path: "blog-layout-2",
+                    element: <BlogLayout2 />,
+                },
+                {
+                    path: "blog-layout-3",
+                    element: <BlogLayout3 />,
+                },
+                {
+                    path: "pricing-layout-1",
+                    element: <PricingLayout1 />,
+                },
+                {
+                    path: "pricing-layout-2",
+                    element: <PricingLayout2 />,
+                },
+                {
+                    path: "invoice-layout-1",
+                    element: <InvoiceLayout1 />,
+                },
+                {
+                    path: "invoice-layout-2",
+                    element: <InvoiceLayout2 />,
+                },
+                {
+                    path: "faq-layout-1",
+                    element: <FaqLayout1 />,
+                },
+                {
+                    path: "faq-layout-2",
+                    element: <FaqLayout2 />,
+                },
+                {
+                    path: "faq-layout-3",
+                    element: <FaqLayout3 />,
+                },
+                {
+                    path: "update-profile",
+                    element: <UpdateProfile />,
+                },
+                {
+                    path: "change-password",
+                    element: <ChangePassword />,
+                },
+                {
+                    path: "leads",
+                    element: <RegularTable />,
+                },
+                {
+                    path: "tabulator",
+                    element: <Tabulator />,
+                },
+                {
+                    path: "modal",
+                    element: <Modal />,
+                },
+                {
+                    path: "slide-over",
+                    element: <SlideOver />,
+                },
+                {
+                    path: "notification",
+                    element: <Notification />,
+                },
+                {
+                    path: "tab",
+                    element: <Tab />,
+                },
+                {
+                    path: "accordion",
+                    element: <Accordion />,
+                },
+                {
+                    path: "button",
+                    element: <Button />,
+                },
+                {
+                    path: "alert",
+                    element: <Alert />,
+                },
+                {
+                    path: "progress-bar",
+                    element: <ProgressBar />,
+                },
+                {
+                    path: "tooltip",
+                    element: <Tooltip />,
+                },
+                {
+                    path: "dropdown",
+                    element: <Dropdown />,
+                },
+                {
+                    path: "typography",
+                    element: <Typography />,
+                },
+                {
+                    path: "icon",
+                    element: <Icon />,
+                },
+                {
+                    path: "loading-icon",
+                    element: <LoadingIcon />,
+                },
+                {
+                    path: "regular-form",
+                    element: <RegularForm />,
+                },
+                {
+                    path: "datepicker",
+                    element: <Datepicker />,
+                },
+                {
+                    path: "tom-select",
+                    element: <TomSelect />,
+                },
+                {
+                    path: "file-upload",
+                    element: <FileUpload />,
+                },
+                {
+                    path: "wysiwyg-editor",
+                    element: <WysiwygEditor />,
+                },
+                {
+                    path: "validation",
+                    element: <Validation />,
+                },
+                {
+                    path: "chart",
+                    element: <Chart />,
+                },
+                {
+                    path: "slider",
+                    element: <Slider />,
+                },
+                {
+                    path: "image-zoom",
+                    element: <ImageZoom />,
+                },
+            ],
         },
+        // Route not found
         {
-          path: "post",
-          element: <Post />,
+            path: "*",
+            element: <ErrorPage />,
         },
-        {
-          path: "calendar",
-          element: <Calendar />,
-        },
-        {
-          path: "crud-data-list",
-          element: <CrudDataList />,
-        },
-        {
-          path: "crud-form",
-          element: <CrudForm />,
-        },
-        {
-          path: "users-layout-1",
-          element: <UsersLayout1 />,
-        },
-        {
-          path: "users-layout-2",
-          element: <UsersLayout2 />,
-        },
-        {
-          path: "users-layout-3",
-          element: <UsersLayout3 />,
-        },
-        {
-          path: "profile-overview-1",
-          element: <ProfileOverview1 />,
-        },
-        {
-          path: "profile-overview-2",
-          element: <ProfileOverview2 />,
-        },
-        {
-          path: "profile-overview-3",
-          element: <ProfileOverview3 />,
-        },
-        {
-          path: "wizard-layout-1",
-          element: <WizardLayout1 />,
-        },
-        {
-          path: "wizard-layout-2",
-          element: <WizardLayout2 />,
-        },
-        {
-          path: "add-property",
-          element: <WizardLayout3 />,
-        },
-        {
-          path: "blog-layout-1",
-          element: <BlogLayout1 />,
-        },
-        {
-          path: "blog-layout-2",
-          element: <BlogLayout2 />,
-        },
-        {
-          path: "blog-layout-3",
-          element: <BlogLayout3 />,
-        },
-        {
-          path: "pricing-layout-1",
-          element: <PricingLayout1 />,
-        },
-        {
-          path: "pricing-layout-2",
-          element: <PricingLayout2 />,
-        },
-        {
-          path: "invoice-layout-1",
-          element: <InvoiceLayout1 />,
-        },
-        {
-          path: "invoice-layout-2",
-          element: <InvoiceLayout2 />,
-        },
-        {
-          path: "faq-layout-1",
-          element: <FaqLayout1 />,
-        },
-        {
-          path: "faq-layout-2",
-          element: <FaqLayout2 />,
-        },
-        {
-          path: "faq-layout-3",
-          element: <FaqLayout3 />,
-        },
-        {
-          path: "update-profile",
-          element: <UpdateProfile />,
-        },
-        {
-          path: "change-password",
-          element: <ChangePassword />,
-        },
-        {
+    ];
 
-          path:"leads",
-          element:<RegularTable/>
-     
-        },
-        {
-          path: "tabulator",
-          element: <Tabulator />,
-        },
-        {
-          path: "modal",
-          element: <Modal />,
-        },
-        {
-          path: "slide-over",
-          element: <SlideOver />,
-        },
-        {
-          path: "notification",
-          element: <Notification />,
-        },
-        {
-          path: "tab",
-          element: <Tab />,
-        },
-        {
-          path: "accordion",
-          element: <Accordion />,
-        },
-        {
-          path: "button",
-          element: <Button />,
-        },
-        {
-          path: "alert",
-          element: <Alert />,
-        },
-        {
-          path: "progress-bar",
-          element: <ProgressBar />,
-        },
-        {
-          path: "tooltip",
-          element: <Tooltip />,
-        },
-        {
-          path: "dropdown",
-          element: <Dropdown />,
-        },
-        {
-          path: "typography",
-          element: <Typography />,
-        },
-        {
-          path: "icon",
-          element: <Icon />,
-        },
-        {
-          path: "loading-icon",
-          element: <LoadingIcon />,
-        },
-        {
-          path: "regular-form",
-          element: <RegularForm />,
-        },
-        {
-          path: "datepicker",
-          element: <Datepicker />,
-        },
-        {
-          path: "tom-select",
-          element: <TomSelect />,
-        },
-        {
-          path: "file-upload",
-          element: <FileUpload />,
-        },
-        {
-          path: "wysiwyg-editor",
-          element: <WysiwygEditor />,
-        },
-        {
-          path: "validation",
-          element: <Validation />,
-        },
-        {
-          path: "chart",
-          element: <Chart />,
-        },
-        {
-          path: "slider",
-          element: <Slider />,
-        },
-        {
-          path: "image-zoom",
-          element: <ImageZoom />,
-        },
-      ],
-    },
-    {
-      path: "/simple-menu",
-      element: <SimpleMenu />,
-      children: [
-        {
-          path: "dashboard-overview-1",
-          element: <DashboardOverview1 />,
-        },
-        {
-          path: "dashboard-overview-2",
-          element: <DashboardOverview2 />,
-        },
-        {
-          path: "dashboard-overview-3",
-          element: <DashboardOverview3 />,
-        },
-        {
-          path: "dashboard-overview-4",
-          element: <DashboardOverview4 />,
-        },
-        {
-          path: "categories",
-          element: <Categories />,
-        },
-        {
-          path: "add-product",
-          element: <AddProduct />,
-        },
-        {
-          path: "product-list",
-          element: <ProductList />,
-        },
-        {
-          path: "product-grid",
-          element: <ProductGrid />,
-        },
-        {
-          path: "transaction-list",
-          element: <TransactionList />,
-        },
-        {
-          path: "transaction-detail",
-          element: <TransactionDetail />,
-        },
-        {
-          path: "seller-list",
-          element: <SellerList />,
-        },
-        {
-          path: "seller-detail",
-          element: <SellerDetail />,
-        },
-        {
-          path: "reviews",
-          element: <Reviews />,
-        },
-        {
-          path: "inbox",
-          element: <Inbox />,
-        },
-        // {
-        //   path: "agents",
-        //   element: <FileManager />,
-        // },
-        {
-          path: "point-of-sale",
-          element: <PointOfSale />,
-        },
-        {
-          path: "chat",
-          element: <Chat />,
-        },
-        {
-          path: "post",
-          element: <Post />,
-        },
-        {
-          path: "calendar",
-          element: <Calendar />,
-        },
-        {
-          path: "crud-data-list",
-          element: <CrudDataList />,
-        },
-        {
-          path: "crud-form",
-          element: <CrudForm />,
-        },
-        {
-          path: "users-layout-1",
-          element: <UsersLayout1 />,
-        },
-        {
-          path: "users-layout-2",
-          element: <UsersLayout2 />,
-        },
-        {
-          path: "users-layout-3",
-          element: <UsersLayout3 />,
-        },
-        {
-          path: "profile-overview-1",
-          element: <ProfileOverview1 />,
-        },
-        {
-          path: "profile-overview-2",
-          element: <ProfileOverview2 />,
-        },
-        {
-          path: "profile-overview-3",
-          element: <ProfileOverview3 />,
-        },
-        {
-          path: "wizard-layout-1",
-          element: <WizardLayout1 />,
-        },
-        {
-          path: "wizard-layout-2",
-          element: <WizardLayout2 />,
-        },
-        {
-          path: "add-property",
-          element: <WizardLayout3 />,
-        },
-        {
-          path: "blog-layout-1",
-          element: <BlogLayout1 />,
-        },
-        {
-          path: "blog-layout-2",
-          element: <BlogLayout2 />,
-        },
-        {
-          path: "blog-layout-3",
-          element: <BlogLayout3 />,
-        },
-        {
-          path: "pricing-layout-1",
-          element: <PricingLayout1 />,
-        },
-        {
-          path: "pricing-layout-2",
-          element: <PricingLayout2 />,
-        },
-        {
-          path: "invoice-layout-1",
-          element: <InvoiceLayout1 />,
-        },
-        {
-          path: "invoice-layout-2",
-          element: <InvoiceLayout2 />,
-        },
-        {
-          path: "faq-layout-1",
-          element: <FaqLayout1 />,
-        },
-        {
-          path: "faq-layout-2",
-          element: <FaqLayout2 />,
-        },
-        {
-          path: "faq-layout-3",
-          element: <FaqLayout3 />,
-        },
-        {
-          path: "update-profile",
-          element: <UpdateProfile />,
-        },
-        {
-          path: "change-password",
-          element: <ChangePassword />,
-        },
-        {
-          path: "leads",
-          element: <RegularTable />,
-        },
-        {
-          path: "tabulator",
-          element: <Tabulator />,
-        },
-        {
-          path: "modal",
-          element: <Modal />,
-        },
-        {
-          path: "slide-over",
-          element: <SlideOver />,
-        },
-        {
-          path: "notification",
-          element: <Notification />,
-        },
-        {
-          path: "tab",
-          element: <Tab />,
-        },
-        {
-          path: "accordion",
-          element: <Accordion />,
-        },
-        {
-          path: "button",
-          element: <Button />,
-        },
-        {
-          path: "alert",
-          element: <Alert />,
-        },
-        {
-          path: "progress-bar",
-          element: <ProgressBar />,
-        },
-        {
-          path: "tooltip",
-          element: <Tooltip />,
-        },
-        {
-          path: "dropdown",
-          element: <Dropdown />,
-        },
-        {
-          path: "typography",
-          element: <Typography />,
-        },
-        {
-          path: "icon",
-          element: <Icon />,
-        },
-        {
-          path: "loading-icon",
-          element: <LoadingIcon />,
-        },
-        {
-          path: "regular-form",
-          element: <RegularForm />,
-        },
-        {
-          path: "datepicker",
-          element: <Datepicker />,
-        },
-        {
-          path: "tom-select",
-          element: <TomSelect />,
-        },
-        {
-          path: "file-upload",
-          element: <FileUpload />,
-        },
-        {
-          path: "wysiwyg-editor",
-          element: <WysiwygEditor />,
-        },
-        {
-          path: "validation",
-          element: <Validation />,
-        },
-        {
-          path: "chart",
-          element: <Chart />,
-        },
-        {
-          path: "slider",
-          element: <Slider />,
-        },
-        {
-          path: "image-zoom",
-          element: <ImageZoom />,
-        },
-      ],
-    },
-    {
-      path: "/top-menu",
-      element: <TopMenu />,
-      children: [
-        {
-          path: "dashboard-overview-1",
-          element: <DashboardOverview1 />,
-        },
-        {
-          path: "dashboard-overview-2",
-          element: <DashboardOverview2 />,
-        },
-        {
-          path: "dashboard-overview-3",
-          element: <DashboardOverview3 />,
-        },
-        {
-          path: "dashboard-overview-4",
-          element: <DashboardOverview4 />,
-        },
-        {
-          path: "categories",
-          element: <Categories />,
-        },
-        {
-          path: "add-product",
-          element: <AddProduct />,
-        },
-        {
-          path: "product-list",
-          element: <ProductList />,
-        },
-        {
-          path: "product-grid",
-          element: <ProductGrid />,
-        },
-        {
-          path: "transaction-list",
-          element: <TransactionList />,
-        },
-        {
-          path: "transaction-detail",
-          element: <TransactionDetail />,
-        },
-        {
-          path: "seller-list",
-          element: <SellerList />,
-        },
-        {
-          path: "seller-detail",
-          element: <SellerDetail />,
-        },
-        {
-          path: "reviews",
-          element: <Reviews />,
-        },
-        {
-          path: "inbox",
-          element: <Inbox />,
-        },
-        // {
-        //   path: "agents",
-        //   element: <FileManager />,
-        // },
-        {
-          path: "point-of-sale",
-          element: <PointOfSale />,
-        },
-        {
-          path: "chat",
-          element: <Chat />,
-        },
-        {
-          path: "post",
-          element: <Post />,
-        },
-        {
-          path: "calendar",
-          element: <Calendar />,
-        },
-        {
-          path: "crud-data-list",
-          element: <CrudDataList />,
-        },
-        {
-          path: "crud-form",
-          element: <CrudForm />,
-        },
-        {
-          path: "users-layout-1",
-          element: <UsersLayout1 />,
-        },
-        {
-          path: "users-layout-2",
-          element: <UsersLayout2 />,
-        },
-        {
-          path: "users-layout-3",
-          element: <UsersLayout3 />,
-        },
-        {
-          path: "profile-overview-1",
-          element: <ProfileOverview1 />,
-        },
-        {
-          path: "profile-overview-2",
-          element: <ProfileOverview2 />,
-        },
-        {
-          path: "profile-overview-3",
-          element: <ProfileOverview3 />,
-        },
-        {
-          path: "wizard-layout-1",
-          element: <WizardLayout1 />,
-        },
-        {
-          path: "wizard-layout-2",
-          element: <WizardLayout2 />,
-        },
-        {
-          path: "add-property",
-          element: <WizardLayout3 />,
-        },
-        {
-          path: "blog-layout-1",
-          element: <BlogLayout1 />,
-        },
-        {
-          path: "blog-layout-2",
-          element: <BlogLayout2 />,
-        },
-        {
-          path: "blog-layout-3",
-          element: <BlogLayout3 />,
-        },
-        {
-          path: "pricing-layout-1",
-          element: <PricingLayout1 />,
-        },
-        {
-          path: "pricing-layout-2",
-          element: <PricingLayout2 />,
-        },
-        {
-          path: "invoice-layout-1",
-          element: <InvoiceLayout1 />,
-        },
-        {
-          path: "invoice-layout-2",
-          element: <InvoiceLayout2 />,
-        },
-        {
-          path: "faq-layout-1",
-          element: <FaqLayout1 />,
-        },
-        {
-          path: "faq-layout-2",
-          element: <FaqLayout2 />,
-        },
-        {
-          path: "faq-layout-3",
-          element: <FaqLayout3 />,
-        },
-        {
-          path: "update-profile",
-          element: <UpdateProfile />,
-        },
-        {
-          path: "change-password",
-          element: <ChangePassword />,
-        },
-        {
-          path: "leads",
-          element: <RegularTable />,
-        },
-        {
-          path: "tabulator",
-          element: <Tabulator />,
-        },
-        {
-          path: "modal",
-          element: <Modal />,
-        },
-        {
-          path: "slide-over",
-          element: <SlideOver />,
-        },
-        {
-          path: "notification",
-          element: <Notification />,
-        },
-        {
-          path: "tab",
-          element: <Tab />,
-        },
-        {
-          path: "accordion",
-          element: <Accordion />,
-        },
-        {
-          path: "button",
-          element: <Button />,
-        },
-        {
-          path: "alert",
-          element: <Alert />,
-        },
-        {
-          path: "progress-bar",
-          element: <ProgressBar />,
-        },
-        {
-          path: "tooltip",
-          element: <Tooltip />,
-        },
-        {
-          path: "dropdown",
-          element: <Dropdown />,
-        },
-        {
-          path: "typography",
-          element: <Typography />,
-        },
-        {
-          path: "icon",
-          element: <Icon />,
-        },
-        {
-          path: "loading-icon",
-          element: <LoadingIcon />,
-        },
-        {
-          path: "regular-form",
-          element: <RegularForm />,
-        },
-        {
-          path: "datepicker",
-          element: <Datepicker />,
-        },
-        {
-          path: "tom-select",
-          element: <TomSelect />,
-        },
-        {
-          path: "file-upload",
-          element: <FileUpload />,
-        },
-        {
-          path: "wysiwyg-editor",
-          element: <WysiwygEditor />,
-        },
-        {
-          path: "validation",
-          element: <Validation />,
-        },
-        {
-          path: "chart",
-          element: <Chart />,
-        },
-        {
-          path: "slider",
-          element: <Slider />,
-        },
-        {
-          path: "image-zoom",
-          element: <ImageZoom />,
-        },
-      ],
-    },
-    // {
-    //   path: "/login",
-    //   element: <Login />,
-    // },
-    // {
-    //   path: "/register",
-    //   element: <Register />,
-    // },
-    // {
-    //   path: "/error-page",
-    //   element: <ErrorPage />,
-    // },
-    {
-      path: "*",
-      element: <ErrorPage />,
-    },
-  ];
-
-  return useRoutes(routes);
+    return useRoutes(routes);
 }
 
 export default Router;

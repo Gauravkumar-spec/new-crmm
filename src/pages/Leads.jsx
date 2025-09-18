@@ -153,9 +153,9 @@ const Leads = () => {
           theme: "dark",
         });
         resetForm();
-        setTimeout(() => {
-          navigate("/leadlist");
-        }, 1000);
+        // setTimeout(() => {
+        //   navigate("/leadlist");
+        // }, 1000);
       }
     } catch (error) {
       console.error("Error saving lead:", error);
