@@ -12,8 +12,8 @@ import PropertyList from "../views/property-list/Main.jsx";
 import PropertyGrid from "../views/property-grid/Main.jsx";
 import TransactionList from "../views/transaction-list/Main";
 import TransactionDetail from "../views/transaction-detail/Main";
-import SellerList from "../pages/LeadLists";
-import SellerDetail from "../views/seller-detail/Main";
+import LeadList from "../pages/LeadLists";
+import LeadGrid from "../views/seller-detail/Main";
 import Reviews from "../views/reviews/Main";
 import Inbox from "../views/inbox/Main";
 import PointOfSale from "../views/point-of-sale/Main";
@@ -31,7 +31,8 @@ import ProfileOverview3 from "../views/profile-overview-3/Main";
 import WizardLayout1 from "../views/wizard-layout-1/Main";
 import WizardLayout2 from "../views/wizard-layout-2/Main";
 import CreateProperty from "../pages/CreateProperty.jsx";
-import RegularTable from "../pages/Leads";
+import CreateLeads from "../pages/Leads.jsx";
+import EditLead from "../pages/EditLead.jsx";
 import BlogLayout1 from "../views/blog-layout-1/Main";
 import BlogLayout2 from "../views/blog-layout-2/Main";
 import BlogLayout3 from "../views/blog-layout-3/Main";
@@ -70,6 +71,7 @@ import Slider from "../views/slider/Main";
 import ImageZoom from "../views/image-zoom/Main";
 import AgentList from "../pages/AgentList";
 import Agents from "../pages/Agent";
+import EditAgent from "../pages/EditAgent.jsx";
 import ProtectedRoute from "../components/ProtectedRoute";
 import Login from "../pages/Login";
 
@@ -125,12 +127,12 @@ function Router() {
                     element: <TransactionDetail />,
                 },
                 {
-                    path: "seller-list",
-                    element: <SellerList />,
+                    path: "lead-list",
+                    element: <LeadList />,
                 },
                 {
-                    path: "seller-detail",
-                    element: <SellerDetail />,
+                    path: "lead-detail",
+                    element: <LeadGrid />,
                 },
                 {
                     path: "reviews",
@@ -147,6 +149,10 @@ function Router() {
                 {
                     path: "agentslist",
                     element: <AgentList />,
+                },
+                {
+                    path: "edit-agent/:agentName",
+                    element: <EditAgent />,
                 },
                 {
                     path: "point-of-sale",
@@ -261,8 +267,12 @@ function Router() {
                     element: <ChangePassword />,
                 },
                 {
-                    path: "leads",
-                    element: <RegularTable />,
+                    path: "create-lead",
+                    element: <CreateLeads />,
+                },
+                {
+                    path: "edit-lead/:id",
+                    element: <EditLead />,
                 },
                 {
                     path: "tabulator",
@@ -408,12 +418,12 @@ function Router() {
                     element: <TransactionDetail />,
                 },
                 {
-                    path: "seller-list",
-                    element: <SellerList />,
+                    path: "lead-list",
+                    element: <LeadList />,
                 },
                 {
-                    path: "seller-detail",
-                    element: <SellerDetail />,
+                    path: "lead-detail",
+                    element: <LeadGrid />,
                 },
                 {
                     path: "reviews",
@@ -537,7 +547,7 @@ function Router() {
                 },
                 {
                     path: "leads",
-                    element: <RegularTable />,
+                    element: <CreateLeads />,
                 },
                 {
                     path: "tabulator",
@@ -683,12 +693,12 @@ function Router() {
                     element: <TransactionDetail />,
                 },
                 {
-                    path: "seller-list",
-                    element: <SellerList />,
+                    path: "lead-list",
+                    element: <LeadList />,
                 },
                 {
-                    path: "seller-detail",
-                    element: <SellerDetail />,
+                    path: "lead-detail",
+                    element: <LeadGrid />,
                 },
                 {
                     path: "reviews",
@@ -812,7 +822,7 @@ function Router() {
                 },
                 {
                     path: "leads",
-                    element: <RegularTable />,
+                    element: <CreateLeads />,
                 },
                 {
                     path: "tabulator",

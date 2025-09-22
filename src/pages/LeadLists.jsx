@@ -10,20 +10,25 @@ import {
     ModalBody,
 } from "@/base-components";
 import { useEffect, useRef, useState } from "react";
-import { useLeadSearchMutation } from "../services/leadApi";
+import { useNavigate } from "react-router-dom";
+import { leadApi } from "../api/leadApi";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Main() {
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
-    const [leadSearch] = useLeadSearchMutation();
+    const [deleteLeadId, setDeleteLeadId] = useState(null);
     const [leads, setLeads] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const [searchQuery, setSearchQuery] = useState("");
 
     const handleKeyDown = (event) => {
-        if(event.key == "Enter"){
-          fetchLead({"search": searchQuery})
+        if (event.key == "Enter") {
+            fetchLead({ search: searchQuery });
         }
         // You can access other properties of the event object, like event.keyCode, event.code, etc.
     };
@@ -54,7 +59,7 @@ function Main() {
         console.log(`Original Payload data:-`, OriginalPayload);
 
         try {
-            const response = await leadSearch(OriginalPayload).unwrap();
+            const response = await leadApi.leadSearch(OriginalPayload);
             console.log(`Response after fetching:-`, response.data);
 
             setLeads(response.data);
@@ -123,6 +128,44 @@ function Main() {
             </div>
         );
     }
+
+    const handleEdit = (e, id) => {
+        console.log("handle edit run....");
+        e.preventDefault();
+        navigate(`/dashboard/edit-lead/${id}`);
+    };
+
+    // Temp. fix
+    const handleDelete = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await leadApi.deleteLead({
+                lead_id: deleteLeadId,
+                client_id: 1,
+            });
+
+            if (response) {
+                toast.success("Property saved successfully!", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    theme: "dark",
+                });
+
+                await fetchLead();
+                setDeleteConfirmationModal(false);
+            }
+        } catch (error) {
+            console.log("Error: ", error.message);
+            toast.error(error.message, {
+                position: "top-center",
+                autoClose: 3000,
+                theme: "dark",
+            });
+            setDeleteConfirmationModal(false);
+
+        }
+    };
 
     return (
         <>
@@ -229,23 +272,26 @@ function Main() {
                                     <td className="text-center">Rs. {lead?.budget_max}</td>
                                     <td className="table-report__action w-56">
                                         <div className="flex justify-center items-center">
-                                            <a className="flex items-center mr-3" href="#">
+                                            <p
+                                                onClick={(e) => handleEdit(e, lead?.lead_id)}
+                                                className="flex items-center mr-3 cursor-pointer"
+                                            >
                                                 <Lucide
                                                     icon="CheckSquare"
                                                     className="w-4 h-4 mr-1"
                                                 />{" "}
                                                 Edit
-                                            </a>
-                                            <a
-                                                className="flex items-center text-danger"
-                                                href="#"
+                                            </p>
+                                            <p
+                                                className="flex items-center text-danger cursor-pointer"
                                                 onClick={() => {
+                                                    setDeleteLeadId(lead?.lead_id);
                                                     setDeleteConfirmationModal(true);
                                                 }}
                                             >
                                                 <Lucide icon="Trash2" className="w-4 h-4 mr-1" />{" "}
                                                 Delete
-                                            </a>
+                                            </p>
                                         </div>
                                     </td>
                                 </tr>
@@ -315,38 +361,46 @@ function Main() {
                 {/* END: Pagination */}
             </div>
             {/* BEGIN: Delete Confirmation Modal */}
-            <Modal
-                show={deleteConfirmationModal}
-                onHidden={() => {
-                    setDeleteConfirmationModal(false);
-                }}
-            >
-                <ModalBody className="p-0">
-                    <div className="p-5 text-center">
-                        <Lucide icon="XCircle" className="w-16 h-16 text-danger mx-auto mt-3" />
-                        <div className="text-3xl mt-5">Are you sure?</div>
-                        <div className="text-slate-500 mt-2">
-                            Do you really want to delete these records? <br />
-                            This process cannot be undone.
+            {deleteLeadId && (
+                <Modal
+                    show={deleteConfirmationModal}
+                    onHidden={() => {
+                        setDeleteConfirmationModal(false);
+                    }}
+                >
+                    <ModalBody className="p-0">
+                        <div className="p-5 text-center">
+                            <Lucide icon="XCircle" className="w-16 h-16 text-danger mx-auto mt-3" />
+                            <div className="text-3xl mt-5">Are you sure?</div>
+                            <div className="text-slate-500 mt-2">
+                                Do you really want to delete these records? <br />
+                                This process cannot be undone.
+                            </div>
                         </div>
-                    </div>
-                    <div className="px-5 pb-8 text-center">
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setDeleteConfirmationModal(false);
-                            }}
-                            className="btn btn-outline-secondary w-24 mr-1"
-                        >
-                            Cancel
-                        </button>
-                        <button type="button" className="btn btn-danger w-24">
-                            Delete
-                        </button>
-                    </div>
-                </ModalBody>
-            </Modal>
+                        <div className="px-5 pb-8 text-center">
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setDeleteConfirmationModal(false);
+                                }}
+                                className="btn btn-outline-secondary w-24 mr-1 cursor-pointer"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                type="button"
+                                onClick={(e) => handleDelete(e)}
+                                className="btn btn-danger w-24 cursor-pointer"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </ModalBody>
+                </Modal>
+            )}
             {/* END: Delete Confirmation Modal */}
+
+            <ToastContainer />
         </>
     );
 }

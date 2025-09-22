@@ -1,14 +1,13 @@
 import { useState, useRef } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useSetAgentMutation } from "../services/agentApi";
+import {agentApi} from "../api/agentApi.js"
 import { agentValidationSchema } from "../utils/validationSchemas/agentSchema";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { values } from "lodash";
 
 function Agent() {
     const navigate = useNavigate();
-    const [setAgent] = useSetAgentMutation();
+  
     // Form state
     const [formData, setFormData] = useState({
         name: "",
@@ -132,7 +131,7 @@ function Agent() {
 
             console.log("🟡 Step 4: Final Payload =>", payload);
 
-            const res = await setAgent(payload).unwrap();
+            const res = await agentApi.createAgent(payload);
             console.log(res, "response from setAgent");
             console.log("✅ Step 5: API Response =>", res);
             if (res?.message) {
@@ -147,9 +146,9 @@ function Agent() {
                 if (fileInputRef.current) {
                     fileInputRef.current.value = "";
                 }
-                // setTimeout(() => {
-                //   navigate("/agentlist");
-                // }, 1000);
+                setTimeout(() => {
+                  navigate("/dashboard/agentslist");
+                }, 1000);
             }
         } catch (err) {
             console.error("❌ Step 6: API Error =>", err);

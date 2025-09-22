@@ -54,22 +54,22 @@ const sideMenu = atom({
             },
             {
                 icon: "Box",
-                pathname: "/dashboard/leads",
+                pathname: "/dashboard/create-lead",
                 title: "LEADS",
             },
             {
                 icon: "Users",
-                pathname: "/dashboard/sellers",
+                pathname: "/dashboard/leads",
                 title: "LeadList",
                 subMenu: [
                     {
                         icon: "",
-                        pathname: "/dashboard/seller-list",
+                        pathname: "/dashboard/lead-list",
                         title: "Lead List",
                     },
                     {
                         icon: "",
-                        pathname: "/dashboard/seller-detail",
+                        pathname: "/dashboard/lead-detail",
                         title: "Lead Detail",
                     },
                 ],

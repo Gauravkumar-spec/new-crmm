@@ -35,4 +35,12 @@ export const agentApi = {
             throw error?.response?.data || error;
         }
     },
+    agentPreview: async (data) => {
+        try {
+            const response = await axiosInstance.post("agentPreview", data);
+            return response.data;
+        } catch (error) {
+            throw error?.response?.data || error;
+        }
+    },
 };

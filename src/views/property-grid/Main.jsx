@@ -10,7 +10,6 @@ import {
 } from "@/base-components";
 import { useState, useEffect } from "react";
 import image1 from "../../assets/images/p-1.jpg";
-import { usePropertySearchMutation } from "../../services/propertyApi";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { propertyApi } from "../../api/propertyApi";

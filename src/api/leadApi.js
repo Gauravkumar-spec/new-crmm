@@ -33,4 +33,12 @@ export const leadApi = {
             throw error?.response?.data || error;
         }
     },
+    leadPreview: async (data) => {
+        try {
+            const response = await axiosInstance.post("leadPreview", data);
+            return response.data;
+        } catch (error) {
+            throw error?.response?.data || error;
+        }
+    },
 };
