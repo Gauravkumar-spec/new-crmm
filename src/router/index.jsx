@@ -10,6 +10,7 @@ import Categories from "../views/categories/Main";
 import AddProduct from "../views/add-product/Main";
 import PropertyList from "../views/property-list/Main.jsx";
 import PropertyGrid from "../views/property-grid/Main.jsx";
+import PropertyPreview from "../pages/PropertyPreview.jsx";
 import TransactionList from "../views/transaction-list/Main";
 import TransactionDetail from "../views/transaction-detail/Main";
 import LeadList from "../pages/LeadLists";
@@ -117,6 +118,10 @@ function Router() {
                 {
                     path: "product-grid",
                     element: <PropertyGrid />,
+                },
+                {
+                    path: "product-preview/:id",
+                    element: <PropertyPreview />,
                 },
                 {
                     path: "transaction-list",

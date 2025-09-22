@@ -13,8 +13,6 @@ import { useLeadSearchMutation } from "../../services/leadApi";
 import leadImage from "../../assets/images/profile-12.jpg"
 
 import { faker as $f } from "../../pages/PropertyList";
-// import * as $_ from "lodash";
-// import classnames from "classnames";
 
 function Main() {
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);

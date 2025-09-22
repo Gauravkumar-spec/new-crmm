@@ -122,7 +122,7 @@ const Leads = () => {
             }
         };
         fetchDropDownData();
-    }, [dataTable]);
+    }, []);
 
     const handleSubmit = async (values, { resetForm, setSubmitting }) => {
         try {

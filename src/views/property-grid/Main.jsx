@@ -75,6 +75,11 @@ function Main() {
         e.preventDefault();
         navigate(`/dashboard/edit-property/${id}`);
     };
+    const handlePreview = (e, id) => {
+        console.log("handle preview run....");
+        e.preventDefault();
+        navigate(`/dashboard/product-preview/${id}`);
+    };
 
     if (error) {
         return (
@@ -219,6 +224,13 @@ function Main() {
                                         </div>
                                     </div>
                                     <div className="flex justify-center lg:justify-end items-center p-5 border-t border-slate-200/60 dark:border-darkmode-400">
+                                        <p
+                                            className="flex items-center text-primary mr-auto cursor-pointer"
+                                            onClick={(e) => handlePreview(e, p?.property_id)}
+                                        >
+                                            <Lucide icon="Eye" className="w-4 h-4 mr-1" /> Preview
+                                        </p>
+
                                         <p
                                             onClick={(e) => handleEdit(e, p?.property_id)}
                                             className="flex items-center mr-3 cursor-pointer"
