@@ -19,8 +19,8 @@ import {
 // import logoUrl from "@/assets/images/logo.svg";
 import classnames from "classnames";
 import MobileMenu from "@/components/mobile-menu/Main";
-import MainColorSwitcher from "@/components/main-color-switcher/Main";
-import DarkModeSwitcher from "@/components/dark-mode-switcher/Main";
+// import MainColorSwitcher from "@/components/main-color-switcher/Main";
+// import DarkModeSwitcher from "@/components/dark-mode-switcher/Main";
 
 function Main() {
   const [searchDropdown, setSearchDropdown] = useState(false);
@@ -37,8 +37,8 @@ function Main() {
 
   return (
     <div className="py-2">
-      <DarkModeSwitcher />
-      <MainColorSwitcher />
+      {/* <DarkModeSwitcher />
+      <MainColorSwitcher /> */}
       <MobileMenu />
       {/* BEGIN: Top Bar */}
       <div className="border-b border-white/[0.08] mt-[2.2rem] md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 pt-3 md:pt-0 mb-10">

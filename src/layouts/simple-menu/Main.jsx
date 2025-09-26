@@ -10,8 +10,8 @@ import { Lucide, Tippy } from "@/base-components";
 import classnames from "classnames";
 import TopBar from "@/components/top-bar/Main";
 import MobileMenu from "@/components/mobile-menu/Main";
-import MainColorSwitcher from "@/components/main-color-switcher/Main";
-import DarkModeSwitcher from "@/components/dark-mode-switcher/Main";
+// import MainColorSwitcher from "@/components/main-color-switcher/Main";
+// import DarkModeSwitcher from "@/components/dark-mode-switcher/Main";
 
 function Main() {
   const navigate = useNavigate();
@@ -27,8 +27,8 @@ function Main() {
 
   return (
     <div className="py-2">
-      <DarkModeSwitcher />
-      <MainColorSwitcher />
+      {/* <DarkModeSwitcher />
+      <MainColorSwitcher /> */}
       <MobileMenu />
       <div className="flex mt-[4.7rem] md:mt-0">
         {/* BEGIN: Simple Menu */}

@@ -20,6 +20,8 @@ import SimpleLineChart1 from "@/components/simple-line-chart-1/Main";
 import ReportMap from "@/components/report-map/Main";
 import { useRef, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import DarkModeSwitcher from "../../components/dark-mode-switcher/Main.jsx";
+import MainColorSwitcher from "../../components/main-color-switcher/Main.jsx";
 
 function Main() {
     const [salesReportFilter, setSalesReportFilter] = useState();
@@ -37,6 +39,8 @@ function Main() {
 
     return (
         <div className="grid grid-cols-12 gap-6">
+            <DarkModeSwitcher />
+            <MainColorSwitcher />
             <div className="col-span-12 2xl:col-span-9">
                 <div className="grid grid-cols-12 gap-6">
                     {/* BEGIN: General Report */}

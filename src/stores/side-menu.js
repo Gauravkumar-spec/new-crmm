@@ -7,28 +7,29 @@ const sideMenu = atom({
             {
                 icon: "Home",
                 title: "Dashboard",
-                subMenu: [
-                    {
-                        icon: "",
-                        pathname: "/dashboard",
-                        title: "Overview 1",
-                    },
-                    // {
-                    //     icon: "",
-                    //     pathname: "/dashboard/dashboard-overview-2",
-                    //     title: "Overview 2",
-                    // },
-                    // {
-                    //     icon: "",
-                    //     pathname: "/dashboard/dashboard-overview-3",
-                    //     title: "Overview 3",
-                    // },
-                    // {
-                    //     icon: "",
-                    //     pathname: "/dashboard/dashboard-overview-4",
-                    //     title: "Overview 4",
-                    // },
-                ],
+                pathname: "/dashboard",
+                // subMenu: [
+                //     {
+                //         icon: "",
+                //         pathname: "/dashboard",
+                //         title: "Overview 1",
+                //     },
+                //     {
+                //         icon: "",
+                //         pathname: "/dashboard/dashboard-overview-2",
+                //         title: "Overview 2",
+                //     },
+                //     {
+                //         icon: "",
+                //         pathname: "/dashboard/dashboard-overview-3",
+                //         title: "Overview 3",
+                //     },
+                //     {
+                //         icon: "",
+                //         pathname: "/dashboard/dashboard-overview-4",
+                //         title: "Overview 4",
+                //     },
+                // ],
             },
             {
                 icon: "CreditCard",
