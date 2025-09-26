@@ -91,18 +91,18 @@ function Router() {
             ),
             children: [
                 { index: true, element: <DashboardOverview1 /> },
-                {
-                    path: "dashboard-overview-2",
-                    element: <DashboardOverview2 />,
-                },
-                {
-                    path: "dashboard-overview-3",
-                    element: <DashboardOverview3 />,
-                },
-                {
-                    path: "dashboard-overview-4",
-                    element: <DashboardOverview4 />,
-                },
+                // {
+                //     path: "dashboard-overview-2",
+                //     element: <DashboardOverview2 />,
+                // },
+                // {
+                //     path: "dashboard-overview-3",
+                //     element: <DashboardOverview3 />,
+                // },
+                // {
+                //     path: "dashboard-overview-4",
+                //     element: <DashboardOverview4 />,
+                // },
                 {
                     path: "categories",
                     element: <Categories />,
@@ -386,18 +386,18 @@ function Router() {
                     path: "dashboard-overview-1",
                     element: <DashboardOverview1 />,
                 },
-                {
-                    path: "dashboard-overview-2",
-                    element: <DashboardOverview2 />,
-                },
-                {
-                    path: "dashboard-overview-3",
-                    element: <DashboardOverview3 />,
-                },
-                {
-                    path: "dashboard-overview-4",
-                    element: <DashboardOverview4 />,
-                },
+                // {
+                //     path: "dashboard-overview-2",
+                //     element: <DashboardOverview2 />,
+                // },
+                // {
+                //     path: "dashboard-overview-3",
+                //     element: <DashboardOverview3 />,
+                // },
+                // {
+                //     path: "dashboard-overview-4",
+                //     element: <DashboardOverview4 />,
+                // },
                 {
                     path: "categories",
                     element: <Categories />,
@@ -661,18 +661,18 @@ function Router() {
                     path: "dashboard-overview-1",
                     element: <DashboardOverview1 />,
                 },
-                {
-                    path: "dashboard-overview-2",
-                    element: <DashboardOverview2 />,
-                },
-                {
-                    path: "dashboard-overview-3",
-                    element: <DashboardOverview3 />,
-                },
-                {
-                    path: "dashboard-overview-4",
-                    element: <DashboardOverview4 />,
-                },
+                // {
+                //     path: "dashboard-overview-2",
+                //     element: <DashboardOverview2 />,
+                // },
+                // {
+                //     path: "dashboard-overview-3",
+                //     element: <DashboardOverview3 />,
+                // },
+                // {
+                //     path: "dashboard-overview-4",
+                //     element: <DashboardOverview4 />,
+                // },
                 {
                     path: "categories",
                     element: <Categories />,

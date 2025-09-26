@@ -13,21 +13,21 @@ const simpleMenu = atom({
             pathname: "/simple-menu/dashboard-overview-1",
             title: "Overview 1",
           },
-          {
-            icon: "",
-            pathname: "/simple-menu/dashboard-overview-2",
-            title: "Overview 2",
-          },
-          {
-            icon: "",
-            pathname: "/simple-menu/dashboard-overview-3",
-            title: "Overview 3",
-          },
-          {
-            icon: "",
-            pathname: "/simple-menu/dashboard-overview-4",
-            title: "Overview 4",
-          },
+          // {
+          //   icon: "",
+          //   pathname: "/simple-menu/dashboard-overview-2",
+          //   title: "Overview 2",
+          // },
+          // {
+          //   icon: "",
+          //   pathname: "/simple-menu/dashboard-overview-3",
+          //   title: "Overview 3",
+          // },
+          // {
+          //   icon: "",
+          //   pathname: "/simple-menu/dashboard-overview-4",
+          //   title: "Overview 4",
+          // },
         ],
       },
       {

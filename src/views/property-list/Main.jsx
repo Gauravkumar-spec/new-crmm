@@ -15,6 +15,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { propertyApi } from "../../api/propertyApi.js";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // temporary imports
 import image1 from "../../assets/images/p-1.jpg";
@@ -31,6 +34,7 @@ function Main() {
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const handleKeyDown = (event) => {
         if (event.key == "Enter") {
@@ -83,6 +87,40 @@ function Main() {
         navigate(`/dashboard/edit-property/${id}`);
     };
 
+    const handleDelete = async (id) => {
+        setIsDeleting(true);
+        try {
+            const payload = {
+                property_id: id,
+                client_id: 1,
+            };
+
+            const response = await propertyApi.deleteProperty(payload);
+
+            console.log(response);
+            if (response) {
+                toast.success("Property deleted successfully!", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    theme: "dark",
+                });
+
+                await fetchPage();
+            }
+        } catch (error) {
+            if (error.toString().includes("FK__Invoice__propert__151B244E")) {
+                toast.error("First settle the generated invoice then you can delete", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    theme: "dark",
+                });
+            }
+        } finally {
+            setIsDeleting(false);
+            setDeleteConfirmationModal(false)
+        }
+    };
+
     if (error) {
         return (
             <div className="flex flex-col items-center justify-center h-full p-5">
@@ -107,7 +145,7 @@ function Main() {
                     Please try again later.
                 </p>
                 <button
-                    onClick={fetchPage}
+                    onClick={() => fetchPage()}
                     className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
                 >
                     Try Again
@@ -268,9 +306,8 @@ function Main() {
                                                                 />{" "}
                                                                 Edit
                                                             </p>
-                                                            <a
-                                                                className="flex items-center text-danger"
-                                                                href="#"
+                                                            <p
+                                                                className="flex items-center text-danger cursor-pointer"
                                                                 onClick={() => {
                                                                     setDeleteConfirmationModal(
                                                                         true
@@ -282,7 +319,7 @@ function Main() {
                                                                     className="w-4 h-4 mr-1"
                                                                 />{" "}
                                                                 Delete
-                                                            </a>
+                                                            </p>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -318,12 +355,16 @@ function Main() {
                                     onClick={() => {
                                         setDeleteConfirmationModal(false);
                                     }}
-                                    className="btn btn-outline-secondary w-24 mr-1"
+                                    className="btn btn-outline-secondary w-24 mr-1 cursor-pointer"
                                 >
                                     Cancel
                                 </button>
-                                <button type="button" className="btn btn-danger w-24">
-                                    Delete
+                                <button
+                                    onClick={() => handleDelete(6)}
+                                    type="button"
+                                    className="btn btn-danger w-24 cursor-pointer"
+                                >
+                                    {isDeleting ? "Deleting..." : "Delete"}
                                 </button>
                             </div>
                         </ModalBody>
@@ -331,6 +372,8 @@ function Main() {
                     {/* END: Delete Confirmation Modal -*/}
                 </>
             )}
+
+            <ToastContainer />
         </div>
     );
 }

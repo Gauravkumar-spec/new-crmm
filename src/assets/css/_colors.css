@@ -19,6 +19,25 @@
     --color-slate-700: theme("colors.rgb.slate.700");
     --color-slate-800: theme("colors.rgb.slate.800");
     --color-slate-900: theme("colors.rgb.slate.900");
+
+    /* Enhanced premium animated gradient */
+    --color-background-gradient: linear-gradient(
+        135deg, 
+        #667eea 0%, 
+        #764ba2 20%, 
+        #f093fb 40%, 
+        #f5576c 60%, 
+        #4facfe 80%, 
+        #00f2fe 100%
+    );
+    --gradient-size: 300% 300%;
+    --gradient-animation: gradientFlow 15s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* Default dark-mode colors */
@@ -35,9 +54,20 @@
     --color-darkmode-700: 35 45 69;
     --color-darkmode-800: 27 37 59;
     --color-darkmode-900: 15 23 42;
+
+    /* Enhanced dark mode premium animated gradient */
+    --color-background-gradient: linear-gradient(
+        135deg, 
+        #0c3483 0%, 
+        #2a5298 20%, 
+        #1e3c72 40%, 
+        #16213e 60%, 
+        #0f3460 80%, 
+        #1a1a2e 100%
+    );
 }
 
-/* Theme 1 colors */
+/* Theme 1 colors - Emerald Luxury */
 .theme-1 {
     --color-primary: theme("colors.rgb.emerald.900");
     --color-secondary: theme("colors.rgb.slate.200");
@@ -48,14 +78,37 @@
     --color-danger: theme("colors.rgb.rose.600");
     --color-light: theme("colors.rgb.slate.100");
     --color-dark: theme("colors.rgb.slate.800");
-    &.dark {
-        --color-primary: theme("colors.rgb.emerald.800");
-    }
+
+    /* Enhanced Emerald Luxury premium animated gradient */
+    --color-background-gradient: linear-gradient(
+        135deg, 
+        #2ecc71 0%, 
+        #27ae60 15%, 
+        #219653 30%, 
+        #1e8449 45%, 
+        #145a32 60%, 
+        #0f5132 75%, 
+        #0a3d2b 90%
+    );
+}
+.theme-1.dark {
+    --color-primary: theme("colors.rgb.emerald.800");
+    
+    /* Enhanced dark Emerald Luxury premium animated gradient */
+    --color-background-gradient: linear-gradient(
+        135deg, 
+        #14532d 0%, 
+        #166534 20%, 
+        #15803d 40%, 
+        #16a34a 60%, 
+        #22c55e 80%, 
+        #4ade80 100%
+    );
 }
 
-/* Theme 2 colors */
+/* Theme 2 colors - Red / Orange Luxury */
 .theme-2 {
-    --color-primary: theme("colors.rgb.blue.900");
+    --color-primary: theme("colors.rgb.red.900");
     --color-secondary: theme("colors.rgb.slate.200");
     --color-success: theme("colors.rgb.teal.600");
     --color-info: theme("colors.rgb.cyan.500");
@@ -64,12 +117,35 @@
     --color-danger: theme("colors.rgb.red.700");
     --color-light: theme("colors.rgb.slate.100");
     --color-dark: theme("colors.rgb.slate.800");
-    &.dark {
-        --color-primary: theme("colors.rgb.blue.800");
-    }
+
+    /* Enhanced Red/Orange Luxury premium animated gradient */
+    --color-background-gradient: linear-gradient(
+        135deg, 
+        #e74c3c 0%, 
+        #c0392b 15%, 
+        #e67e22 30%, 
+        #d35400 45%, 
+        #f39c12 60%, 
+        #e74c3c 75%, 
+        #c0392b 90%
+    );
+}
+.theme-2.dark {
+    --color-primary: theme("colors.rgb.red.800");
+    
+    /* Enhanced dark Red/Orange Luxury premium animated gradient */
+    --color-background-gradient: linear-gradient(
+        135deg, 
+        #7f1d1d 0%, 
+        #991b1b 20%, 
+        #dc2626 40%, 
+        #b91c1c 60%, 
+        #ef4444 80%, 
+        #f87171 100%
+    );
 }
 
-/* Theme 3 colors */
+/* Theme 3 colors - Cyan / Teal Luxury */
 .theme-3 {
     --color-primary: theme("colors.rgb.cyan.900");
     --color-secondary: theme("colors.rgb.slate.200");
@@ -80,12 +156,35 @@
     --color-danger: theme("colors.rgb.red.700");
     --color-light: theme("colors.rgb.slate.100");
     --color-dark: theme("colors.rgb.slate.800");
-    &.dark {
-        --color-primary: theme("colors.rgb.cyan.800");
-    }
+
+    /* Enhanced Cyan/Teal Luxury premium animated gradient */
+    --color-background-gradient: linear-gradient(
+        135deg, 
+        #00c6ff 0%, 
+        #0072ff 15%, 
+        #00d4ff 30%, 
+        #0891b2 45%, 
+        #0e7490 60%, 
+        #155e75 75%, 
+        #164e63 90%
+    );
+}
+.theme-3.dark {
+    --color-primary: theme("colors.rgb.cyan.800");
+    
+    /* Enhanced dark Cyan/Teal Luxury premium animated gradient */
+    --color-background-gradient: linear-gradient(
+        135deg, 
+        #001f33 0%, 
+        #00394d 20%, 
+        #005a78 40%, 
+        #0080a3 60%, 
+        #00a8d9 80%, 
+        #00d4ff 100%
+    );
 }
 
-/* Theme 4 colors */
+/* Theme 4 colors - Indigo Luxury */
 .theme-4 {
     --color-primary: theme("colors.rgb.indigo.900");
     --color-secondary: theme("colors.rgb.slate.200");
@@ -96,7 +195,45 @@
     --color-danger: theme("colors.rgb.red.700");
     --color-light: theme("colors.rgb.slate.100");
     --color-dark: theme("colors.rgb.slate.800");
-    &.dark {
-        --color-primary: theme("colors.rgb.indigo.700");
-    }
+
+    /* Dark Purple to Black Luxury Gradient - Static Animated Look */
+    --color-background-gradient: linear-gradient(
+        45deg,
+        #2b003e 0%,   /* dark purple */
+        #1f002c 15%,
+        #12001a 30%,
+        #2b003e 45%,   /* dark purple */
+        #1f002c 60%,
+        #0a0010 75%,
+        #000000 85%,
+        #2b003e 100%   /* dark purple */
+    );
+}
+
+
+.theme-4.dark {
+    --color-primary: theme("colors.rgb.indigo.700");
+    
+    /* Enhanced dark Indigo Luxury premium animated gradient */
+    --color-background-gradient: linear-gradient(
+        135deg, 
+        #2e0854 0%, 
+        #3f1f74 20%, 
+        #4c1d95 40%, 
+        #5b21b6 60%, 
+        #6d28d9 80%, 
+        #8b5cf6 100%
+    );
+}
+
+/* Apply animation to all gradient backgrounds */
+body {
+    background: var(--color-background-gradient);
+    background-size: var(--gradient-size);
+    animation: var(--gradient-animation);
+}
+
+/* Ensure smooth transitions when switching themes */
+body, .gradient-bg {
+    transition: background 1.5s ease;
 }
