@@ -8,7 +8,8 @@ export default function ProtectedRoute({ children }) {
     if (loading) {
         return (
             <div className="flex items-center justify-center h-screen">
-                <p className="text-white font-semibold text-lg">Checking session...</p>
+                {/* Pending  */}
+                <p className="text-white font-semibold text-5xl">TerraX</p>
             </div>
         );
     }

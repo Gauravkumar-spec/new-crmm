@@ -38,7 +38,7 @@ function Main(props) {
             switchColorScheme("default");
           }}
           className={classnames({
-            "block w-8 h-8 cursor-pointer bg-blue-800 rounded-full border-4 mr-1 hover:border-slate-200": true,
+            "block w-8 h-8 cursor-pointer bg-[#F185DA] rounded-full border-4 mr-1 hover:border-slate-200": true,
             "border-slate-300 dark:border-darkmode-800/80":
               colorScheme == "default",
             "border-white dark:border-darkmode-600": colorScheme != "default",
@@ -49,7 +49,7 @@ function Main(props) {
             switchColorScheme("theme-1");
           }}
           className={classnames({
-            "block w-8 h-8 cursor-pointer bg-emerald-900 rounded-full border-4 mr-1 hover:border-slate-200": true,
+            "block w-8 h-8 cursor-pointer bg-[#229B56] rounded-full border-4 mr-1 hover:border-slate-200": true,
             "border-slate-300 dark:border-darkmode-800/80":
               colorScheme == "theme-1",
             "border-white dark:border-darkmode-600": colorScheme != "theme-1",
@@ -60,7 +60,7 @@ function Main(props) {
             switchColorScheme("theme-2");
           }}
           className={classnames({
-            "block w-8 h-8 cursor-pointer bg-blue-900 rounded-full border-4 mr-1 hover:border-slate-200": true,
+            "block w-8 h-8 cursor-pointer bg-[#D85E03] rounded-full border-4 mr-1 hover:border-slate-200": true,
             "border-slate-300 dark:border-darkmode-800/80":
               colorScheme == "theme-2",
             "border-white dark:border-darkmode-600": colorScheme != "theme-2",
@@ -71,7 +71,7 @@ function Main(props) {
             switchColorScheme("theme-3");
           }}
           className={classnames({
-            "block w-8 h-8 cursor-pointer bg-cyan-900 rounded-full border-4 mr-1 hover:border-slate-200": true,
+            "block w-8 h-8 cursor-pointer bg-[#0890B1] rounded-full border-4 mr-1 hover:border-slate-200": true,
             "border-slate-300 dark:border-darkmode-800/80":
               colorScheme == "theme-3",
             "border-white dark:border-darkmode-600": colorScheme != "theme-3",
@@ -82,7 +82,7 @@ function Main(props) {
             switchColorScheme("theme-4");
           }}
           className={classnames({
-            "block w-8 h-8 cursor-pointer bg-indigo-900 rounded-full border-4 hover:border-slate-200": true,
+            "block w-8 h-8 cursor-pointer bg-[#270038] rounded-full border-4 hover:border-slate-200": true,
             "border-slate-300 dark:border-darkmode-800/80":
               colorScheme == "theme-4",
             "border-white dark:border-darkmode-600": colorScheme != "theme-4",
