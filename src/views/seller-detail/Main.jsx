@@ -10,9 +10,10 @@ import {
 } from "@/base-components";
 import { useEffect, useState } from "react";
 import { useLeadSearchMutation } from "../../services/leadApi";
-import leadImage from "../../assets/images/profile-12.jpg"
+import leadImage from "../../assets/images/profile-12.jpg";
 
 import { faker as $f } from "../../pages/PropertyList";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
@@ -22,6 +23,7 @@ function Main() {
     const [error, setError] = useState(null);
 
     const [searchQuery, setSearchQuery] = useState("");
+    const navigate = useNavigate();
 
     const handleKeyDown = (event) => {
         if (event.key == "Enter") {
@@ -327,12 +329,14 @@ function Main() {
                                         </div>
                                     </div>
                                     <div className="flex justify-center lg:justify-end items-center p-5 border-t border-slate-200/60 dark:border-darkmode-400">
-                                        <a
-                                            className="flex items-center text-primary mr-auto"
-                                            href="#"
+                                        <p
+                                            className="flex items-center text-primary mr-auto cursor-pointer"
+                                            onClick={() =>
+                                                navigate(`/dashboard/lead-preview/${lead?.lead_id}`)
+                                            }
                                         >
                                             <Lucide icon="Eye" className="w-4 h-4 mr-1" /> Preview
-                                        </a>
+                                        </p>
                                         <a className="flex items-center mr-3" href="#">
                                             <Lucide icon="CheckSquare" className="w-4 h-4 mr-1" />{" "}
                                             Edit

@@ -102,10 +102,10 @@ function AgentList() {
                         <span>{error}</span>
                     </div>
                     <button
-                        onClick={() => {
+                        onClick={async() => {
                             console.log("🔄 Retrying fetch...");
                             setError(null);
-                            fetchAgents();
+                            await fetchAgents();
                         }}
                         className="mt-3 text-cyan-400 hover:text-cyan-300 text-sm"
                     >

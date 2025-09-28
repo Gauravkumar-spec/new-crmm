@@ -15,6 +15,7 @@ import TransactionList from "../views/transaction-list/Main";
 import TransactionDetail from "../views/transaction-detail/Main";
 import LeadList from "../pages/LeadLists";
 import LeadGrid from "../views/seller-detail/Main";
+import LeadPreview from "../pages/LeadPreview.jsx";
 import Reviews from "../views/reviews/Main";
 import Inbox from "../views/inbox/Main";
 import PointOfSale from "../views/point-of-sale/Main";
@@ -138,6 +139,10 @@ function Router() {
                 {
                     path: "lead-detail",
                     element: <LeadGrid />,
+                },
+                {
+                    path: "lead-preview/:id",
+                    element: <LeadPreview />,
                 },
                 {
                     path: "reviews",
@@ -431,6 +436,10 @@ function Router() {
                     element: <LeadGrid />,
                 },
                 {
+                    path: "lead-preview/:id",
+                    element: <LeadPreview />,
+                },
+                {
                     path: "reviews",
                     element: <Reviews />,
                 },
@@ -704,6 +713,10 @@ function Router() {
                 {
                     path: "lead-detail",
                     element: <LeadGrid />,
+                },
+                {
+                    path: "lead-preview/:id",
+                    element: <LeadPreview />,
                 },
                 {
                     path: "reviews",
