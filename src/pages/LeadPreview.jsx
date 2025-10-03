@@ -20,6 +20,8 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { leadApi } from "../api/leadApi";
+import ErrorUI from "../components/error-ui/Main.jsx";
+import LoadingUI from "../components/loading-ui/Main.jsx";
 
 const LeadPreview = () => {
     const navigate = useNavigate();
@@ -84,55 +86,12 @@ const LeadPreview = () => {
     const handleEdit = () => {};
 
     if (loading) {
-        return (
-            <div className="min-h-screen bg-zinc-200 flex items-center justify-center">
-                <div className="text-center">
-                    <div className="relative inline-flex">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 animate-spin"></div>
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-zinc-900 rounded-full"></div>
-                    </div>
-                    <p className="mt-4 text-lg text-zinc-300 font-light tracking-wider">
-                        LOADING LEAD
-                    </p>
-                </div>
-            </div>
-        );
+        return <LoadingUI message="Loading Lead" />;
     }
 
     if (error) {
-        return (
-            <div className="flex flex-col items-center justify-center h-full p-5">
-                <svg
-                    className="w-16 h-16 text-red-500 mb-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                </svg>
-                <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
-                    Something went wrong
-                </h2>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                    Please try again later.
-                </p>
-                <button
-                    onClick={async () => await fetchLeadPreview()}
-                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                >
-                    Try Again
-                </button>
-            </div>
-        );
+        return <ErrorUI handlerFunc={fetchLeadPreview} />;
     }
-
-    console.log(lead)
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-darkmode-800 dark:to-darkmode-900 py-8 px-4 sm:px-6 lg:px-8">
@@ -144,7 +103,7 @@ const LeadPreview = () => {
                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                                 <div className="flex items-center">
                                     <button
-                                        onClick={() => navigate("/dashboard/lead-detail")}
+                                        onClick={() => history.back()}
                                         className="mr-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                                     >
                                         <FiArrowLeft className="w-5 h-5" />

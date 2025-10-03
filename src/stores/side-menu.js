@@ -34,7 +34,7 @@ const sideMenu = atom({
             {
                 icon: "CreditCard",
                 pathname: "/dashboard/add-property",
-                title: "ADD PROPERTY",
+                title: "Add Property",
             },
             {
                 icon: "CreditCard",
@@ -56,12 +56,12 @@ const sideMenu = atom({
             {
                 icon: "Box",
                 pathname: "/dashboard/create-lead",
-                title: "LEADS",
+                title: "Leads",
             },
             {
                 icon: "Users",
                 pathname: "/dashboard/leads",
-                title: "LeadList",
+                title: "Lead List",
                 subMenu: [
                     {
                         icon: "",

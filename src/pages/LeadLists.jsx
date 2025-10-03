@@ -15,6 +15,7 @@ import { leadApi } from "../api/leadApi";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingUi from "../components/loading-ui/Main.jsx";
 
 function Main() {
     const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
@@ -113,20 +114,7 @@ function Main() {
     }
 
     if (loading) {
-        console.log("⏳ Loading agents...");
-        return (
-            <div className="min-h-screen bg-zinc-200 flex items-center justify-center">
-                <div className="text-center">
-                    <div className="relative inline-flex">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 animate-spin"></div>
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-zinc-900 rounded-full"></div>
-                    </div>
-                    <p className="mt-4 text-lg text-blue-500 font-semibold tracking-wider">
-                        LOADING LEADS
-                    </p>
-                </div>
-            </div>
-        );
+        return <LoadingUi message="Loading Leads" />;
     }
 
     const handleEdit = (e, id) => {
@@ -163,7 +151,6 @@ function Main() {
                 theme: "dark",
             });
             setDeleteConfirmationModal(false);
-
         }
     };
 

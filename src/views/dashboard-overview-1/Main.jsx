@@ -22,6 +22,9 @@ import { useRef, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import DarkModeSwitcher from "../../components/dark-mode-switcher/Main.jsx";
 import MainColorSwitcher from "../../components/main-color-switcher/Main.jsx";
+import TotalProperty from "./components/TotalProperty.jsx";
+import TopLeads from "./components/TopLeads.jsx";
+import TopAgent from "./components/TopAgent.jsx";
 
 function Main() {
     const [salesReportFilter, setSalesReportFilter] = useState();
@@ -34,8 +37,6 @@ function Main() {
     };
 
     const { isAuthenticated, loading, session } = useAuth();
-    console.log(isAuthenticated);
-    console.log(session);
 
     return (
         <div className="grid grid-cols-12 gap-6">
@@ -54,33 +55,7 @@ function Main() {
                         <div className="grid grid-cols-12 gap-6 mt-5">
                             <div className="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                                 <div className="report-box zoom-in">
-                                    <div className="box p-5">
-                                        <div className="flex">
-                                            <Lucide
-                                                icon="ShoppingCart"
-                                                className="report-box__icon text-primary"
-                                            />
-                                            <div className="ml-auto">
-                                                <Tippy
-                                                    tag="div"
-                                                    className="report-box__indicator bg-success cursor-pointer"
-                                                    content="33% Higher than last month"
-                                                >
-                                                    33%
-                                                    <Lucide
-                                                        icon="ChevronUp"
-                                                        className="w-4 h-4 ml-0.5"
-                                                    />
-                                                </Tippy>
-                                            </div>
-                                        </div>
-                                        <div className="text-3xl font-medium leading-8 mt-6">
-                                            4.710
-                                        </div>
-                                        <div className="text-base text-slate-500 mt-1">
-                                            Item Sales
-                                        </div>
-                                    </div>
+                                    <TotalProperty />
                                 </div>
                             </div>
                             <div className="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
@@ -337,42 +312,7 @@ function Main() {
                     </div>
                     {/* END: Official Store */}
                     {/* BEGIN: Weekly Best Sellers */}
-                    <div className="col-span-12 xl:col-span-4 mt-6">
-                        <div className="intro-y flex items-center h-10">
-                            <h2 className="text-lg font-medium truncate mr-5">
-                                Weekly Best Sellers
-                            </h2>
-                        </div>
-                        <div className="mt-5">
-                            {$_.take($f(), 4).map((faker, fakerKey) => (
-                                <div key={fakerKey} className="intro-y">
-                                    <div className="box px-4 py-4 mb-3 flex items-center zoom-in">
-                                        <div className="w-10 h-10 flex-none image-fit rounded-md overflow-hidden">
-                                            <img
-                                                alt="Midone Tailwind HTML Admin Template"
-                                                src={faker.photos[0]}
-                                            />
-                                        </div>
-                                        <div className="ml-4 mr-auto">
-                                            <div className="font-medium">{faker.users[0].name}</div>
-                                            <div className="text-slate-500 text-xs mt-0.5">
-                                                {faker.dates[0]}
-                                            </div>
-                                        </div>
-                                        <div className="py-1 px-2 rounded-full text-xs bg-success text-white cursor-pointer font-medium">
-                                            137 Sales
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                            <a
-                                href=""
-                                className="intro-y w-full block text-center rounded-md py-4 border border-dotted border-slate-400 dark:border-darkmode-300 text-slate-500"
-                            >
-                                View More
-                            </a>
-                        </div>
-                    </div>
+                    <TopAgent />
                     {/* END: Weekly Best Sellers */}
                     {/* BEGIN: General Report */}
                     <div className="col-span-12 grid grid-cols-12 gap-6 mt-8">
@@ -444,186 +384,9 @@ function Main() {
                         </div>
                     </div>
                     {/* END: General Report */}
-                    {/* BEGIN: Weekly Top Products */}
-                    <div className="col-span-12 mt-6">
-                        <div className="intro-y block sm:flex items-center h-10">
-                            <h2 className="text-lg font-medium truncate mr-5">
-                                Weekly Top Products
-                            </h2>
-                            <div className="flex items-center sm:ml-auto mt-3 sm:mt-0">
-                                <button className="btn box flex items-center text-slate-600 dark:text-slate-300">
-                                    <Lucide
-                                        icon="FileText"
-                                        className="hidden sm:block w-4 h-4 mr-2"
-                                    />
-                                    Export to Excel
-                                </button>
-                                <button className="ml-3 btn box flex items-center text-slate-600 dark:text-slate-300">
-                                    <Lucide
-                                        icon="FileText"
-                                        className="hidden sm:block w-4 h-4 mr-2"
-                                    />
-                                    Export to PDF
-                                </button>
-                            </div>
-                        </div>
-                        <div className="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
-                            <table className="table table-report sm:mt-2">
-                                <thead>
-                                    <tr>
-                                        <th className="whitespace-nowrap">IMAGES</th>
-                                        <th className="whitespace-nowrap">PRODUCT NAME</th>
-                                        <th className="text-center whitespace-nowrap">STOCK</th>
-                                        <th className="text-center whitespace-nowrap">STATUS</th>
-                                        <th className="text-center whitespace-nowrap">ACTIONS</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {$_.take($f(), 4).map((faker, fakerKey) => (
-                                        <tr key={fakerKey} className="intro-x">
-                                            <td className="w-40">
-                                                <div className="flex">
-                                                    <div className="w-10 h-10 image-fit zoom-in">
-                                                        <Tippy
-                                                            tag="img"
-                                                            alt="Midone Tailwind HTML Admin Template"
-                                                            className="rounded-full"
-                                                            src={faker.images[0]}
-                                                            content={`Uploaded at ${faker.dates[0]}`}
-                                                        />
-                                                    </div>
-                                                    <div className="w-10 h-10 image-fit zoom-in -ml-5">
-                                                        <Tippy
-                                                            tag="img"
-                                                            alt="Midone Tailwind HTML Admin Template"
-                                                            className="rounded-full"
-                                                            src={faker.images[1]}
-                                                            content={`Uploaded at ${faker.dates[1]}`}
-                                                        />
-                                                    </div>
-                                                    <div className="w-10 h-10 image-fit zoom-in -ml-5">
-                                                        <Tippy
-                                                            tag="img"
-                                                            alt="Midone Tailwind HTML Admin Template"
-                                                            className="rounded-full"
-                                                            src={faker.images[2]}
-                                                            content={`Uploaded at ${faker.dates[2]}`}
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a
-                                                    href=""
-                                                    className="font-medium whitespace-nowrap"
-                                                >
-                                                    {faker.products[0].name}
-                                                </a>
-                                                <div className="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                                                    {faker.products[0].category}
-                                                </div>
-                                            </td>
-                                            <td className="text-center">{faker.stocks[0]}</td>
-                                            <td className="w-40">
-                                                <div
-                                                    className={classnames({
-                                                        "flex items-center justify-center": true,
-                                                        "text-success": faker.trueFalse[0],
-                                                        "text-danger": !faker.trueFalse[0],
-                                                    })}
-                                                >
-                                                    <Lucide
-                                                        icon="CheckSquare"
-                                                        className="w-4 h-4 mr-2"
-                                                    />
-                                                    {faker.trueFalse[0] ? "Active" : "Inactive"}
-                                                </div>
-                                            </td>
-                                            <td className="table-report__action w-56">
-                                                <div className="flex justify-center items-center">
-                                                    <a className="flex items-center mr-3" href="">
-                                                        <Lucide
-                                                            icon="CheckSquare"
-                                                            className="w-4 h-4 mr-1"
-                                                        />
-                                                        Edit
-                                                    </a>
-                                                    <a
-                                                        className="flex items-center text-danger"
-                                                        href=""
-                                                    >
-                                                        <Lucide
-                                                            icon="Trash2"
-                                                            className="w-4 h-4 mr-1"
-                                                        />{" "}
-                                                        Delete
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3">
-                            <nav className="w-full sm:w-auto sm:mr-auto">
-                                <ul className="pagination">
-                                    <li className="page-item">
-                                        <a className="page-link" href="#">
-                                            <Lucide icon="ChevronsLeft" className="w-4 h-4" />
-                                        </a>
-                                    </li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="#">
-                                            <Lucide icon="ChevronLeft" className="w-4 h-4" />
-                                        </a>
-                                    </li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="#">
-                                            ...
-                                        </a>
-                                    </li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="#">
-                                            1
-                                        </a>
-                                    </li>
-                                    <li className="page-item active">
-                                        <a className="page-link" href="#">
-                                            2
-                                        </a>
-                                    </li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="#">
-                                            3
-                                        </a>
-                                    </li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="#">
-                                            ...
-                                        </a>
-                                    </li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="#">
-                                            <Lucide icon="ChevronRight" className="w-4 h-4" />
-                                        </a>
-                                    </li>
-                                    <li className="page-item">
-                                        <a className="page-link" href="#">
-                                            <Lucide icon="ChevronsRight" className="w-4 h-4" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                            <select className="w-20 form-select box mt-3 sm:mt-0">
-                                <option>10</option>
-                                <option>25</option>
-                                <option>35</option>
-                                <option>50</option>
-                            </select>
-                        </div>
-                    </div>
-                    {/* END: Weekly Top Products */}
+                    {/* BEGIN: Weekly Top Leads */}
+                    <TopLeads />
+                    {/* END: Weekly Top Leads */}
                 </div>
             </div>
             <div className="col-span-12 2xl:col-span-3">
