@@ -2,12 +2,23 @@ import React, { createContext, useContext, useEffect, useMemo, useState, useRef 
 import { getSession, refreshSession, isTokenExpired, isTokenExpiringSoon } from "./Auth.js";
 import { logout as logoutService } from "./Auth.js";
 import axios from "axios";
+import axiosRetry from "axios-retry";
+
 const AuthContext = createContext(null);
 
 export const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL,
     headers: {
         "Content-Type": "application/json",
+    },
+});
+
+// Attach retry policy
+axiosRetry(axiosInstance, {
+    retries: 4,
+    retryDelay: axiosRetry.exponentialDelay, // 1s, 2s, 4s
+    retryCondition: (error) => {
+        return axiosRetry.isNetworkOrIdempotentRequestError(error) || error.response?.status >= 500;
     },
 });
 

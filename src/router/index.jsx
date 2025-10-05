@@ -77,6 +77,14 @@ import EditAgent from "../pages/EditAgent.jsx";
 import ProtectedRoute from "../components/ProtectedRoute";
 import Login from "../pages/Login";
 
+// temp imports
+import LeadConverion from "../test/LeadConverion.jsx";
+import AgentPerformance from "../test/AgentPerformance.jsx";
+import LeadSource from "../test/LeadSource.jsx";
+import RevenueTrend from "../test/RevenueTrend.jsx";
+import LeadCreated from "../test/LeadCreated.jsx";
+import ChartLeadFollowUp from "../test/ChartLeadFollowUp.jsx";
+
 function Router() {
     const routes = [
         // Default: Login page
@@ -112,6 +120,32 @@ function Router() {
                     path: "add-product",
                     element: <AddProduct />,
                 },
+                // temporary path start
+                {
+                    path: "graph/leadConversion",
+                    element: <LeadConverion />,
+                },
+                {
+                    path: "graph/agentPerformance",
+                    element: <AgentPerformance />,
+                },
+                {
+                    path: "graph/leadSource",
+                    element: <LeadSource />,
+                },
+                {
+                    path: "graph/revenueTrend",
+                    element: <RevenueTrend />,
+                },
+                {
+                    path: "graph/leadCreated",
+                    element: <LeadCreated />,
+                },
+                {
+                    path: "graph/chartLeadFollowUp",
+                    element: <ChartLeadFollowUp />,
+                },
+                // temporary path end
                 {
                     path: "product-list",
                     element: <PropertyList />,
