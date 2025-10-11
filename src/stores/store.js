@@ -8,12 +8,14 @@ import { tableApi } from "../services/tableApi";
 import agentReducer from "../stores/slices/agentSlice.js";
 import leadReducer from "../stores/slices/leadSlice.js";
 import propertyReducer from "../stores/slices/propertySlice.js";
+import authReducer from "./slices/appSlice.js"
 
 export const store = configureStore({
     reducer: {
         agents: agentReducer,
         leads: leadReducer,
         property: propertyReducer,
+        auth: authReducer,
 
         [propertyApi.reducerPath]: propertyApi.reducer,
         [agentApi.reducerPath]: agentApi.reducer,

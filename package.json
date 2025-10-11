@@ -7,6 +7,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@azure/msal-browser": "^4.25.0",
+    "@azure/msal-react": "^3.0.20",
     "@ckeditor/ckeditor5-build-balloon": "^29.1.0",
     "@ckeditor/ckeditor5-build-balloon-block": "^29.1.0",
     "@ckeditor/ckeditor5-build-classic": "^29.1.0",
@@ -22,6 +24,8 @@
     "@googlemaps/markerclustererplus": "^1.1.0",
     "@hookform/resolvers": "^2.8.8",
     "@left4code/tw-starter": "^3.1.35",
+    "@microsoft/mgt-element": "^4.6.0",
+    "@microsoft/microsoft-graph-client": "^3.0.7",
     "@popperjs/core": "^2.7.0",
     "@reduxjs/toolkit": "^2.9.0",
     "axios": "^1.11.0",
@@ -29,6 +33,7 @@
     "chart.js": "^3.7.1",
     "classnames": "^2.3.1",
     "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
     "dayjs": "^1.10.4",
     "dropzone": "^5.7.6",
     "formik": "^2.4.6",
