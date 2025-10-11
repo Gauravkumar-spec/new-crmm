@@ -65,4 +65,12 @@ export const dashboardApi = {
             throw error?.response?.data || error;
         }
     },
+    dashboardActivitylog: async (data) => {
+        try {
+            const response = await axiosInstance.post("dashboardActivitylog", data);
+            return response.data;
+        } catch (error) {
+            throw error?.response?.data || error;
+        }
+    },
 };

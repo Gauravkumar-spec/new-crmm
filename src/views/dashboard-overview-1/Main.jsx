@@ -25,6 +25,7 @@ import MainColorSwitcher from "../../components/main-color-switcher/Main.jsx";
 import TotalProperty from "./components/TotalProperty.jsx";
 import TopLeads from "./components/TopLeads.jsx";
 import TopAgent from "./components/TopAgent.jsx";
+import Schedules from "./components/Schedules.jsx";
 
 function Main() {
     const [salesReportFilter, setSalesReportFilter] = useState();
@@ -698,139 +699,7 @@ function Main() {
                         </div>
                         {/* END: Important Notes */}
                         {/* BEGIN: Schedules */}
-                        <div className="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 xl:col-start-1 xl:row-start-2 2xl:col-start-auto 2xl:row-start-auto mt-3">
-                            <div className="intro-x flex items-center h-10">
-                                <h2 className="text-lg font-medium truncate mr-5">Schedules</h2>
-                                <a
-                                    href=""
-                                    className="ml-auto text-primary truncate flex items-center"
-                                >
-                                    <Lucide icon="Plus" className="w-4 h-4 mr-1" /> Add New
-                                    Schedules
-                                </a>
-                            </div>
-                            <div className="mt-5">
-                                <div className="intro-x box">
-                                    <div className="p-5">
-                                        <div className="flex">
-                                            <Lucide
-                                                icon="ChevronLeft"
-                                                className="w-5 h-5 text-slate-500"
-                                            />
-                                            <div className="font-medium text-base mx-auto">
-                                                April
-                                            </div>
-                                            <Lucide
-                                                icon="ChevronRight"
-                                                className="w-5 h-5 text-slate-500"
-                                            />
-                                        </div>
-                                        <div className="grid grid-cols-7 gap-4 mt-5 text-center">
-                                            <div className="font-medium">Su</div>
-                                            <div className="font-medium">Mo</div>
-                                            <div className="font-medium">Tu</div>
-                                            <div className="font-medium">We</div>
-                                            <div className="font-medium">Th</div>
-                                            <div className="font-medium">Fr</div>
-                                            <div className="font-medium">Sa</div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                29
-                                            </div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                30
-                                            </div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                31
-                                            </div>
-                                            <div className="py-0.5 rounded relative">1</div>
-                                            <div className="py-0.5 rounded relative">2</div>
-                                            <div className="py-0.5 rounded relative">3</div>
-                                            <div className="py-0.5 rounded relative">4</div>
-                                            <div className="py-0.5 rounded relative">5</div>
-                                            <div className="py-0.5 bg-success/20 dark:bg-success/30 rounded relative">
-                                                6
-                                            </div>
-                                            <div className="py-0.5 rounded relative">7</div>
-                                            <div className="py-0.5 bg-primary text-white rounded relative">
-                                                8
-                                            </div>
-                                            <div className="py-0.5 rounded relative">9</div>
-                                            <div className="py-0.5 rounded relative">10</div>
-                                            <div className="py-0.5 rounded relative">11</div>
-                                            <div className="py-0.5 rounded relative">12</div>
-                                            <div className="py-0.5 rounded relative">13</div>
-                                            <div className="py-0.5 rounded relative">14</div>
-                                            <div className="py-0.5 rounded relative">15</div>
-                                            <div className="py-0.5 rounded relative">16</div>
-                                            <div className="py-0.5 rounded relative">17</div>
-                                            <div className="py-0.5 rounded relative">18</div>
-                                            <div className="py-0.5 rounded relative">19</div>
-                                            <div className="py-0.5 rounded relative">20</div>
-                                            <div className="py-0.5 rounded relative">21</div>
-                                            <div className="py-0.5 rounded relative">22</div>
-                                            <div className="py-0.5 bg-pending/20 dark:bg-pending/30 rounded relative">
-                                                23
-                                            </div>
-                                            <div className="py-0.5 rounded relative">24</div>
-                                            <div className="py-0.5 rounded relative">25</div>
-                                            <div className="py-0.5 rounded relative">26</div>
-                                            <div className="py-0.5 bg-primary/10 dark:bg-primary/50 rounded relative">
-                                                27
-                                            </div>
-                                            <div className="py-0.5 rounded relative">28</div>
-                                            <div className="py-0.5 rounded relative">29</div>
-                                            <div className="py-0.5 rounded relative">30</div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                1
-                                            </div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                2
-                                            </div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                3
-                                            </div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                4
-                                            </div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                5
-                                            </div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                6
-                                            </div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                7
-                                            </div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                8
-                                            </div>
-                                            <div className="py-0.5 rounded relative text-slate-500">
-                                                9
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="border-t border-slate-200/60 p-5">
-                                        <div className="flex items-center">
-                                            <div className="w-2 h-2 bg-pending rounded-full mr-3"></div>
-                                            <span className="truncate">UI/UX Workshop</span>
-                                            <span className="font-medium xl:ml-auto">23th</span>
-                                        </div>
-                                        <div className="flex items-center mt-4">
-                                            <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                                            <span className="truncate">
-                                                VueJs Frontend Development
-                                            </span>
-                                            <span className="font-medium xl:ml-auto">10th</span>
-                                        </div>
-                                        <div className="flex items-center mt-4">
-                                            <div className="w-2 h-2 bg-warning rounded-full mr-3"></div>
-                                            <span className="truncate">Laravel Rest API</span>
-                                            <span className="font-medium xl:ml-auto">31th</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <Schedules />
                         {/* END: Schedules */}
                     </div>
                 </div>

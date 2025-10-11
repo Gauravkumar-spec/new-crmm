@@ -1,3 +1,43 @@
 .hide-scroller::-webkit-scrollbar {
     width: 0px;
 }
+
+/* .fc {
+    font-size: 0.85rem;
+}
+
+.fc-daygrid-day-number {
+    padding: 2px 4px;
+    font-size: 0.75rem;
+} */
+
+.fc-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-right: 20px;
+}
+
+.fc-toolbar-title {
+    font-size: 0.85rem !important; /* same as date font size */
+    font-weight: 500;
+    color: #334155; /* slate-700 */
+}
+
+.fc-button {
+    background-color: #f1f5f9; /* slate-100 */
+    color: #334155; /* slate-700 */
+    border: none;
+    border-radius: 6px;
+    font-size: 0.75rem !important;
+    font-weight: 500;
+    padding: 2px 8px !important;
+    height: 24px;
+    line-height: 1rem;
+    transition: all 0.2s ease;
+}
+
+.tippy-box[data-theme~="custom"] {
+    background-color: #fff; /* light blue */
+}

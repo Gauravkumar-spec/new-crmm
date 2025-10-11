@@ -85,6 +85,8 @@ import RevenueTrend from "../test/RevenueTrend.jsx";
 import LeadCreated from "../test/LeadCreated.jsx";
 import ChartLeadFollowUp from "../test/ChartLeadFollowUp.jsx";
 
+import ActivityLog from "../views/dashboard-overview-1/components/ActivityLog.jsx"
+
 function Router() {
     const routes = [
         // Default: Login page
@@ -144,6 +146,10 @@ function Router() {
                 {
                     path: "graph/chartLeadFollowUp",
                     element: <ChartLeadFollowUp />,
+                },
+                {
+                    path: "activitylog",
+                    element: <ActivityLog />,
                 },
                 // temporary path end
                 {
