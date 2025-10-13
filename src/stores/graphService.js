@@ -140,8 +140,12 @@ export async function getMessage(authProvider, id) {
         .get();
 }
 
-// (optional) mark message read
 export async function markMessageRead(authProvider, id) {
     ensureClient(authProvider);
-    await graphClient.api(`/me/messages/${id}`).patch({ isRead: true });
+    try {
+        await graphClient.api(`/me/messages/${id}`).patch({ isRead: true });
+    } catch (err) {
+        console.error("Failed to mark message read:", err);
+    }
 }
+

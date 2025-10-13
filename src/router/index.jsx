@@ -86,6 +86,8 @@ import LeadCreated from "../test/LeadCreated.jsx";
 import ChartLeadFollowUp from "../test/ChartLeadFollowUp.jsx";
 
 import ActivityLog from "../views/dashboard-overview-1/components/ActivityLog.jsx"
+import ComposeMail from "../views/inbox/ComposeMail.jsx";
+import MailPreview from "../views/inbox/MailPreview.jsx";
 
 function Router() {
     const routes = [
@@ -150,6 +152,14 @@ function Router() {
                 {
                     path: "activitylog",
                     element: <ActivityLog />,
+                },
+                {
+                    path: 'compose-mail',
+                    element: <ComposeMail />
+                },
+                {
+                    path: 'mail-preview/:id',
+                    element: <MailPreview />
                 },
                 // temporary path end
                 {

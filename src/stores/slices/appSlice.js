@@ -1,4 +1,4 @@
-import { msalInstance } from "../msalInstance.js";
+import { ensureMsalInitialized, msalInstance } from "../msalInstance.js";
 import { AuthCodeMSALBrowserAuthenticationProvider } from "@microsoft/microsoft-graph-client/authProviders/authCodeMsalBrowser";
 import { InteractionType } from "@azure/msal-browser";
 import { getUser } from "../graphService";
@@ -40,6 +40,7 @@ export const { setLoading, setUser, setError, clearError, setAuthProvider, signO
 export const signIn = () => async (dispatch) => {
     try {
         dispatch(setLoading(true));
+        await ensureMsalInitialized();
         const result = await msalInstance.loginPopup({
             scopes: config.scopes,
             prompt: "select_account",
@@ -75,6 +76,34 @@ export const signIn = () => async (dispatch) => {
 export const logout = () => async (dispatch) => {
     await msalInstance.logoutPopup();
     dispatch(signOut());
+};
+
+export const restoreSession = () => async (dispatch) => {
+    try {
+        await ensureMsalInitialized();
+
+        const account = msalInstance.getActiveAccount() || msalInstance.getAllAccounts()[0];
+        if (!account) return; // no cached session
+
+        const authProvider = new AuthCodeMSALBrowserAuthenticationProvider(msalInstance, {
+            account,
+            scopes: config.scopes,
+            interactionType: InteractionType.Popup,
+        });
+
+        const u = await getUser(authProvider);
+        dispatch(
+            setUser({
+                displayName: u.displayName || "",
+                email: u.mail || u.userPrincipalName || "",
+                timeFormat: u.mailboxSettings?.timeFormat || "h:mm a",
+                timeZone: u.mailboxSettings?.timeZone || "UTC",
+            })
+        );
+        dispatch(setAuthProvider(authProvider));
+    } catch (err) {
+        console.error("Session restore failed:", err);
+    }
 };
 
 export default authSlice.reducer;

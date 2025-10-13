@@ -15,38 +15,44 @@ import { AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-reac
 import NotAuthenticated from "./NotAuthenticated.jsx";
 import { useState, useEffect } from "react";
 import { getInbox, getMessagesNextPage, markMessageRead } from "../../stores/graphService.js";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
+
     const { user, loading, authProvider, setError } = useSelector((state) => state.auth);
     const [items, setItems] = useState([]);
     const [next, setNext] = useState(null);
     const [apiLoading, setApiLoading] = useState(false);
 
-    useEffect(() => {
-        console.log("Enter into effect");
-        if (!authProvider) return; // not signed in yet; no-op
-        console.log("One step down");
-        (async () => {
-            try {
-                setApiLoading(true);
-                const res = await getInbox(authProvider, 25);
-                console.log("The value of res: ", res);
-                setItems(res.value ?? []);
-                setNext(res ?? null);
-            } catch (err) {
-                const message = err instanceof Error ? err.message : String(err);
-                setError?.({
-                    message,
-                    debug: typeof err === "object" ? JSON.stringify(err, null, 2) : undefined,
-                });
-            } finally {
-                setApiLoading(false);
-            }
-        })();
-    }, [authProvider, setError]);
+    // Function to fetch inbox
+    const fetchInbox = async () => {
+        if (!authProvider) return;
+        try {
+            setApiLoading(true);
+            const res = await getInbox(authProvider, 25);
+            setItems(res.value ?? []);
+            setNext(res ?? null);
+        } catch (err) {
+            const message = err instanceof Error ? err.message : String(err);
+            setError?.({
+                message,
+                debug: typeof err === "object" ? JSON.stringify(err, null, 2) : undefined,
+            });
+        } finally {
+            setApiLoading(false);
+        }
+    };
 
-    async function loadMore() {
+    // Run on mount or when authProvider is ready
+    useEffect(() => {
+        if (authProvider) fetchInbox();
+    }, [authProvider]);
+
+    // Load more messages
+    const loadMore = async () => {
         if (!authProvider || !next) return;
         try {
             setApiLoading(true);
@@ -62,7 +68,7 @@ function Main() {
         } finally {
             setApiLoading(false);
         }
-    }
+    };
 
     console.log("Item: ", items);
 
@@ -75,6 +81,7 @@ function Main() {
                         {/* BEGIN: Inbox Menu */}
                         <div className="intro-y box bg-primary p-5 mt-6">
                             <button
+                                onClick={() => navigate("/dashboard/compose-mail")}
                                 type="button"
                                 className="btn text-slate-600 dark:text-slate-300 w-full bg-white dark:bg-darkmode-300 dark:border-darkmode-300 mt-1"
                             >
@@ -313,6 +320,10 @@ function Main() {
                                     <a
                                         href="#"
                                         className="w-5 h-5 ml-5 flex items-center justify-center"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            fetchInbox(); // refresh inbox
+                                        }}
                                     >
                                         <Lucide icon="RefreshCw" className="w-4 h-4" />
                                     </a>
@@ -365,7 +376,14 @@ function Main() {
                                                             onChange={() => {}}
                                                         />
                                                     </div>
-                                                    <div className="w-64 sm:w-auto truncate">
+                                                    <div
+                                                        onClick={() =>
+                                                            navigate(
+                                                                `/dashboard/mail-preview/${item?.id}`
+                                                            )
+                                                        }
+                                                        className="w-64 sm:w-auto truncate"
+                                                    >
                                                         <span className="inbox__item--highlight">
                                                             {item?.subject}
                                                         </span>
@@ -380,12 +398,6 @@ function Main() {
                                             </div>
                                         </div>
                                     ))}
-                            </div>
-                            <div className="p-5 flex flex-col sm:flex-row items-center text-center sm:text-left text-slate-500">
-                                <div>4.41 GB (25%) of 17 GB used Manage</div>
-                                <div className="sm:ml-auto mt-2 sm:mt-0">
-                                    Last account activity: 36 minutes ago
-                                </div>
                             </div>
                         </div>
                         {/* END: Inbox Content */}
