@@ -10,7 +10,7 @@ import image3 from "../../../assets/images/p-3.jpg";
 import { useNavigate } from "react-router-dom";
 
 const TopLeads = () => {
-    console.log("TopLead Render")
+    console.log("TopLead Render");
     const [topLead, setTopLead] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -82,83 +82,78 @@ const TopLeads = () => {
                             <th className="text-center whitespace-nowrap">ACTIONS</th>
                         </tr>
                     </thead>
-                    {error ? (
-                        <h4 className="text-slate-400 text-lg font-medium text-center">
-                            404 Not Found
-                        </h4>
-                    ) : (
-                        <>
-                            {loading ? (
-                                <div className="flex items-center justify-center">
+
+                    <tbody>
+                        {error ? (
+                            <tr>
+                                <td
+                                    colSpan="5"
+                                    className="text-center text-slate-400 text-lg font-medium"
+                                >
+                                    404 Not Found
+                                </td>
+                            </tr>
+                        ) : loading ? (
+                            <tr>
+                                <td colSpan="5" className="text-center">
                                     <PulseLoader color="#270038" size={7} />
-                                </div>
-                            ) : (
-                                <tbody>
-                                    {topLead &&
-                                        topLead.data.map((lead) => (
-                                            <tr key={lead?.lead_id} className="intro-x">
-                                                <td className="w-40">
-                                                    <div className="flex">
-                                                        <div className="w-10 h-10 image-fit zoom-in">
-                                                            <Tippy
-                                                                tag="img"
-                                                                alt="Midone Tailwind HTML Admin Template"
-                                                                className="rounded-full"
-                                                                src={image1}
-                                                            />
-                                                        </div>
-                                                        <div className="w-10 h-10 image-fit zoom-in -ml-5">
-                                                            <Tippy
-                                                                tag="img"
-                                                                alt="Midone Tailwind HTML Admin Template"
-                                                                className="rounded-full"
-                                                                src={image2}
-                                                            />
-                                                        </div>
-                                                        <div className="w-10 h-10 image-fit zoom-in -ml-5">
-                                                            <Tippy
-                                                                tag="img"
-                                                                alt="Midone Tailwind HTML Admin Template"
-                                                                className="rounded-full"
-                                                                src={image3}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h4 className="font-medium whitespace-nowrap">
-                                                        {lead?.name}
-                                                    </h4>
-                                                    <div className="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                                                        {lead?.email}
-                                                    </div>
-                                                </td>
-                                                <td className="text-center">{lead?.requirement}</td>
-                                                <td className="w-40 text-center">{lead?.status}</td>
-                                                <td className="table-report__action w-56">
-                                                    <div className="flex justify-center items-center">
-                                                        <p
-                                                            onClick={() =>
-                                                                navigate(
-                                                                    `/dashboard/lead-preview/${lead?.lead_id}`
-                                                                )
-                                                            }
-                                                            className="flex items-center mr-3 cursor-pointer"
-                                                        >
-                                                            <Lucide
-                                                                icon="CheckSquare"
-                                                                className="w-4 h-4 mr-1"
-                                                            />
-                                                            Preview
-                                                        </p>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                </tbody>
-                            )}
-                        </>
-                    )}
+                                </td>
+                            </tr>
+                        ) : (
+                            topLead &&
+                            topLead.data.map((lead) => (
+                                <tr key={lead?.lead_id} className="intro-x">
+                                    <td className="w-40">
+                                        <div className="flex">
+                                            {[image1, image2, image3].map((img, i) => (
+                                                <div
+                                                    key={i}
+                                                    className={`w-10 h-10 image-fit zoom-in ${
+                                                        i > 0 ? "-ml-5" : ""
+                                                    }`}
+                                                >
+                                                    <Tippy
+                                                        tag="img"
+                                                        alt="Midone Tailwind HTML Admin Template"
+                                                        className="rounded-full"
+                                                        src={img}
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h4 className="font-medium whitespace-nowrap">
+                                            {lead?.name}
+                                        </h4>
+                                        <div className="text-slate-500 text-xs whitespace-nowrap mt-0.5">
+                                            {lead?.email}
+                                        </div>
+                                    </td>
+                                    <td className="text-center">{lead?.requirement}</td>
+                                    <td className="w-40 text-center">{lead?.status}</td>
+                                    <td className="table-report__action w-56">
+                                        <div className="flex justify-center items-center">
+                                            <p
+                                                onClick={() =>
+                                                    navigate(
+                                                        `/dashboard/lead-preview/${lead?.lead_id}`
+                                                    )
+                                                }
+                                                className="flex items-center mr-3 cursor-pointer"
+                                            >
+                                                <Lucide
+                                                    icon="CheckSquare"
+                                                    className="w-4 h-4 mr-1"
+                                                />
+                                                Preview
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
                 </table>
             </div>
             {/* <div className="intro-y flex flex-wrap sm:flex-row sm:flex-nowrap items-center mt-3">
